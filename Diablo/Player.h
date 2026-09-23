@@ -21,4 +21,5 @@ private:
 	int myArmor = 10;
 
 	int myCurrentHealth = GetMaxHealth();
+	int myCurrentRoom = 0;
 };
