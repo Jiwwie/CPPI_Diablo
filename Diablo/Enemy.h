@@ -15,6 +15,8 @@ public:
 	void TakeDamage(int someDamage);
 	void DoDamage(Player& aPlayer);
 
+	void ShowStats() const;
+
 private:
 	int myHealth;
 	int myDamage;

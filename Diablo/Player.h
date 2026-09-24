@@ -5,7 +5,7 @@ class Player
 {
 public:
 	void TakeDamage(int someDamage);
-	void DoDamage(Enemy& anEnemy);
+	void DoDamage(Enemy& anEnemy) const;
 
 	void ShowStats() const;
 	
