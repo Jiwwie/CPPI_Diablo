@@ -1,5 +1,7 @@
 #include <iostream>
+#include <vector>
 #include "Enemy.h"
+#include "Room.h"
 #include "Player.h"
 
 void Enemy::TakeDamage(int someDamage)
@@ -15,11 +17,10 @@ void Enemy::DoDamage(Player& aPlayer)
 
 void Enemy::ShowStats() const
 {
-	std::cout << "\n";
-	std::cout << "--Enemy stats--\n";
+	std::cout << "Enemy: ";
 	std::cout << "HP: ";
 	std::cout << myHealth;
-	std::cout << "\nATK: ";
+	std::cout << " | ATK: ";
 	std::cout << myDamage;
 	std::cout << "\n";
 }

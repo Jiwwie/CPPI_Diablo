@@ -8,31 +8,12 @@ class Room
 public:
 	std::vector<Enemy> myEnemies;
 
-	void SpawnEnemies(int anAmount)
-	{
-		for (int enemyCount = 0; enemyCount < anAmount; enemyCount++)
-		{
-			Enemy enemy(15, 5);
-			myEnemies.push_back(enemy);
-		}
-	}
+	void DisplayEnemies() const;
+	void SpawnEnemies(int anAmount);
 
-	void KillEnemy(int anEnemy)
-	{
-		if (!myEnemies[anEnemy].isAlive())
-		{
-			myEnemies.erase(myEnemies.begin() + anEnemy);
-		}
-	}
+	void KillEnemy(int anEnemy);
 
-	void DisplayEnemies()
-	{
-		for (int enemyNum = 0; enemyNum < myEnemies.size(); enemyNum++)
-		{
-			myEnemies[enemyNum].ShowStats();
-			std::cout << '\n';
-		}
-	}
+
 
 private:
 
