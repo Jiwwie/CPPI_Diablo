@@ -16,6 +16,7 @@ public:
 	int GetCurrentHealth() const { return myCurrentHealth; }
 	int GetDefense() const { return myEndurance + myAgility; }
 	int GetInventoryCap() const { return myStrength + myAgility / 3; }
+	int GetCurrentRoom() const { return myCurrentRoom; }
 
 private:
 	int myStrength = BaseValue_Strength;

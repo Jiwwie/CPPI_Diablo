@@ -17,6 +17,23 @@ public:
 		}
 	}
 
+	void KillEnemy(int anEnemy)
+	{
+		if (!myEnemies[anEnemy].isAlive())
+		{
+			myEnemies.erase(myEnemies.begin() + anEnemy);
+		}
+	}
+
+	void DisplayEnemies()
+	{
+		for (int enemyNum = 0; enemyNum < myEnemies.size(); enemyNum++)
+		{
+			myEnemies[enemyNum].ShowStats();
+			std::cout << '\n';
+		}
+	}
+
 private:
 
 };
