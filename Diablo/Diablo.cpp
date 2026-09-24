@@ -18,10 +18,10 @@ int main()
 
 
     std::cout << "Current room: " << player.GetCurrentRoom() + 1 << '\n';
-    GameFunction::Battle(player, rooms);
+    room.Battle(player, rooms);
     player.SetCurrentRoom();
     std::cout << "Current room: " << player.GetCurrentRoom() + 1 << '\n';
-    GameFunction::Battle(player, rooms);
+    room.Battle(player, rooms);
 
 
     if (room.myEnemies.size() <= 0)

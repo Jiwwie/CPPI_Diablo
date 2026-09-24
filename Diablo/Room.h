@@ -13,7 +13,7 @@ public:
 
 	void KillEnemy(int anEnemy);
 
-
+	void Battle(Player& aPlayer, std::vector<Room>& someRooms);
 
 private:
 

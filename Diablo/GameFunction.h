@@ -12,6 +12,4 @@ namespace GameFunction
 
     int GetEnemyTarget(int aChoice, std::vector<Enemy>& someEnemies);
     
-    void Battle(Player& aPlayer, std::vector<Room>& someRooms);
-
 }
