@@ -12,7 +12,7 @@ public:
 	{
 		for (int enemyCount = 0; enemyCount < anAmount; enemyCount++)
 		{
-			Enemy enemy(40, 5);
+			Enemy enemy(15, 5);
 			myEnemies.push_back(enemy);
 		}
 	}
