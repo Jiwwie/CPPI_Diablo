@@ -23,7 +23,7 @@ void Player::ShowStats() const
 	std::cout << "\nAgility: ";
 	std::cout << myAgility;
 	std::cout << "\nArmor: ";
-	std::cout << myArmor;
+	std::cout << myEndurance;
 
 	std::cout << "\n\nHP: ";
 	std::cout << GetCurrentHealth() << "/" << GetMaxHealth();

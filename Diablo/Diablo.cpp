@@ -6,7 +6,7 @@
 
 int main()
 {
-    int currentRoom = 0;
+    //int currentRoom = 0;
     std::vector<Room> rooms;
 
     Player player;
