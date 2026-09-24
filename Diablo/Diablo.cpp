@@ -16,21 +16,18 @@ int main()
     rooms[0].SpawnEnemies(3);
     rooms[1].SpawnEnemies(1);
 
-
-    std::cout << "Current room: " << player.GetCurrentRoom() + 1 << '\n';
-    room.Battle(player, rooms);
+    rooms[player.GetCurrentRoom()].Battle(player);
     player.SetCurrentRoom();
-    std::cout << "Current room: " << player.GetCurrentRoom() + 1 << '\n';
-    room.Battle(player, rooms);
+    rooms[player.GetCurrentRoom()].Battle(player);
 
 
     if (room.myEnemies.size() <= 0)
     {
-        std::cout << "You defeated the enemies";
+        std::cout << "You defeated the enemies\n";
     }
     else
     {
-        std::cout << "You died.";
+        std::cout << "You died.\n";
     }
 
     system("pause");

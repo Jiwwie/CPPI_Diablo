@@ -29,28 +29,29 @@ void Room::KillEnemy(int anEnemy)
 	}
 }
 
-void Room::Battle(Player& aPlayer, std::vector<Room>& someRooms)
+void Room::Battle(Player& aPlayer)
 {
-    while (someRooms[aPlayer.GetCurrentRoom()].myEnemies.size() > 0 && aPlayer.isAlive())
+    while (myEnemies.size() > 0 && aPlayer.isAlive())
     {
         int chosenEnemy = 0;
         system("cls");
         aPlayer.ShowStats();
-        std::cout << "Enemies in room: " << someRooms[aPlayer.GetCurrentRoom()].myEnemies.size();
+        std::cout << "Current room: " << aPlayer.GetCurrentRoom() + 1 << '\n';
+        std::cout << "Enemies in room: " << myEnemies.size();
 
         std::cout << "\n\n";
-        someRooms[aPlayer.GetCurrentRoom()].DisplayEnemies();
+        DisplayEnemies();
 
         std::cout << "Chose enemy to attack:\n";
-        chosenEnemy = GameFunction::GetEnemyTarget(chosenEnemy, someRooms[aPlayer.GetCurrentRoom()].myEnemies);
+        chosenEnemy = GameFunction::GetEnemyTarget(chosenEnemy, myEnemies);
         chosenEnemy -= 1;
-        aPlayer.DoDamage(someRooms[aPlayer.GetCurrentRoom()].myEnemies[chosenEnemy]);
-        for (int enemies = 0; enemies < someRooms[aPlayer.GetCurrentRoom()].myEnemies.size(); enemies++)
+        aPlayer.DoDamage(myEnemies[chosenEnemy]);
+        for (int enemies = 0; enemies < myEnemies.size(); enemies++)
         {
-            someRooms[aPlayer.GetCurrentRoom()].myEnemies[enemies].DoDamage(aPlayer);
+            myEnemies[enemies].DoDamage(aPlayer);
         }
         system("pause");
-        someRooms[aPlayer.GetCurrentRoom()].KillEnemy(chosenEnemy);
+        KillEnemy(chosenEnemy);
     }
 
 }
