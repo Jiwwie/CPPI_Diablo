@@ -11,7 +11,7 @@ void Enemy::TakeDamage(int someDamage)
 
 void Enemy::DoDamage(Player& aPlayer)
 {
-    std::cout << "Enemy does damage \n";
+    std::cout << "Enemy hits you. You lose " << myDamage << " HP.\n";
     aPlayer.TakeDamage(myDamage);
 }
 

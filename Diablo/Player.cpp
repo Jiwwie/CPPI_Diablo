@@ -10,14 +10,16 @@ void Player::TakeDamage(int someDamage)
 
 void Player::DoDamage(Enemy& anEnemy) const
 {
-	std::cout << "Player does damage \n";
+	std::cout << "You slash the enemy with one blow. \n";
+	std::cout << "You hit it for " << GetDamageValue() << " HP. \n";
 	anEnemy.TakeDamage(GetDamageValue());
 }
 
 
 void Player::ShowStats() const
 {
-	std::cout << "\n== STATS == ";
+	system("cls");
+	std::cout << "== STATS == ";
 	std::cout << "\nHP: ";
 	std::cout << GetCurrentHealth() << "/" << GetMaxHealth();
 	std::cout << " || DMG: ";

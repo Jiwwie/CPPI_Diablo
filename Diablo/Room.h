@@ -10,10 +10,13 @@ public:
 
 	void DisplayEnemies() const;
 	void SpawnEnemies(int anAmount);
-
 	void KillEnemy(int anEnemy);
 
+	int GetEnemyTarget(int aChoice) const;
+
 	void Battle(Player& aPlayer);
+
+	void EnterRoom(Player& aPlayer);
 
 private:
 

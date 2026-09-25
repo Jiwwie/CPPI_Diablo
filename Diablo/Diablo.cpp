@@ -16,9 +16,10 @@ int main()
     rooms[0].SpawnEnemies(3);
     rooms[1].SpawnEnemies(1);
 
-    rooms[player.GetCurrentRoom()].Battle(player);
-    player.SetCurrentRoom();
-    rooms[player.GetCurrentRoom()].Battle(player);
+    while (player.isAlive())
+    {
+        rooms[player.GetCurrentRoom()].EnterRoom(player);
+    }
 
 
     if (room.myEnemies.size() <= 0)

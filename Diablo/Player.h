@@ -18,7 +18,9 @@ public:
 	int GetInventoryCap() const { return myStrength + myAgility / 3; }
 
 	int GetCurrentRoom() const { return myCurrentRoom; }
-	void SetCurrentRoom() { myCurrentRoom += 1; }
+	void SetCurrentRoom(int aRoom) { myCurrentRoom = aRoom; }
+	void GoNextRoom() { myCurrentRoom += 1; }
+	void GoPreviousRoom() { myCurrentRoom -= 1; }
 
 private:
 	int myStrength = BaseValue_Strength;
@@ -26,10 +28,11 @@ private:
 	int myEndurance = BaseValue_Endurance;
 
 	int myCurrentHealth = GetMaxHealth();
-	int myCurrentRoom = 0;
+	int myCurrentRoom = BaseValue_FirstRoom;
 
 	enum BaseValue
 	{
+		BaseValue_FirstRoom = 0,
 		BaseValue_Strength = 10,
 		BaseValue_Agility = 5,
 		BaseValue_Endurance = 5,

@@ -9,7 +9,5 @@ namespace GameFunction
         std::cin.clear();
         std::cin.ignore(10000, '\n');
     }
-
-    int GetEnemyTarget(int aChoice, std::vector<Enemy>& someEnemies);
     
 }
