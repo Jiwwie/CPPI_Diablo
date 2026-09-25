@@ -55,7 +55,7 @@ void Room::Battle(Player& aPlayer)
         int chosenEnemy = 0;
         system("cls");
         aPlayer.ShowStats();
-        std::cout << "Current room: " << aPlayer.GetCurrentRoom() + 1 << '\n';
+        std::cout << "Current room: " << myRoomName << '\n';
         std::cout << "Enemies in room: " << myEnemies.size();
 
         std::cout << "\n\n";
@@ -75,11 +75,11 @@ void Room::Battle(Player& aPlayer)
 
 }
 
-void Room::UseDoor(Player& aPlayer)
+void Room::UseDoor(Player& aPlayer, std::vector<Room>& someRooms)
 {
     int menuChoice;
     system("cls");
-    std::cout << "Current room: " << aPlayer.GetCurrentRoom() + 1 << '\n';
+    std::cout << "Current room: " << myRoomName << '\n';
     std::cout << "=========================================\n";
     std::cout << "You looked for more enemies in this room.\n";
     std::cout << "But no one came.\n\n";
@@ -87,9 +87,11 @@ void Room::UseDoor(Player& aPlayer)
     for (int i = 0; i < myDoors.size(); i++)
     {
         std::cout << "[" << i + 1 << "] ";
-        std::cout << " Door \n";
+        std::cout << " Door to " << someRooms[myDoors[i].EnterDoor(aPlayer.GetCurrentRoom())].GetRoomName() << "\n";
     }
+
     std::cin >> menuChoice;
+
     while (menuChoice <= 0 || menuChoice > myDoors.size() || std::cin.fail())
     {
         GameFunction::ClearInputBuffer();
@@ -102,10 +104,10 @@ void Room::UseDoor(Player& aPlayer)
 
 }
 
-void Room::EnterRoom(Player& aPlayer)
+void Room::EnterRoom(Player& aPlayer, std::vector<Room>& someRooms)
 {
     Battle(aPlayer);
     
-    UseDoor(aPlayer);
+    UseDoor(aPlayer, someRooms);
 
 }

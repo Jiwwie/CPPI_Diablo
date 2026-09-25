@@ -6,23 +6,31 @@
 
 class Room
 {
-public:
-	std::vector<Enemy> myEnemies;
-	std::vector<Door> myDoors;
+	public:
+		Room(std::string aRoomName) :
+			myRoomName(aRoomName)
+		{
+		};
 
-	void DisplayEnemies() const;
-	void SpawnEnemies(int anAmount);
-	void SetDoors(Door& aDoor);
-	void KillEnemy(int anEnemy);
-	int GetTarget(int aChoice) const;
 
-	void Battle(Player& aPlayer);
+		std::vector<Enemy> myEnemies;
+		std::vector<Door> myDoors;
 
-	void UseDoor(Player& aPlayer);
+		void DisplayEnemies() const;
+		void SpawnEnemies(int anAmount);
+		void SetDoors(Door& aDoor);
+		void KillEnemy(int anEnemy);
+		int GetTarget(int aChoice) const;
+
+		void Battle(Player& aPlayer);
+
+		void UseDoor(Player& aPlayer, std::vector<Room>& someRooms);
 	 
-	void EnterRoom(Player& aPlayer);
+		void EnterRoom(Player& aPlayer, std::vector<Room>& someRooms);
 
-private:
+		std::string GetRoomName() { return myRoomName; };
 
+	private:
+		std::string myRoomName;
 };
 
