@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 #include "Enemy.h"
+#include "Door.h"
 
 class Room
 {
@@ -14,13 +15,14 @@ public:
 	void KillEnemy(int anEnemy);
 	int GetTarget(int aChoice) const;
 
-	void AddDoor(Door& aDoor);
+	void AddDoor(Door aDoor);
 
 	void Battle(Player& aPlayer);
 
 	void EnterRoom(Player& aPlayer);
 
 private:
+	Door* myDoorPtr;
 
 };
 

@@ -16,13 +16,14 @@ int main()
     rooms.push_back(room);
     rooms.push_back(room);
     rooms[0].SpawnEnemies(3);
-    rooms[0].AddDoor(&door);
+    rooms[0].AddDoor(door);
     rooms[1].SpawnEnemies(1);
-    rooms[1].AddDoor(&door);
+    rooms[1].AddDoor(door);
 
     while (player.isAlive() && player.GetCurrentRoom() < rooms.size())
     {
         rooms[player.GetCurrentRoom()].EnterRoom(player);
+
     }
 
 

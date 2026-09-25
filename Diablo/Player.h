@@ -19,8 +19,10 @@ public:
 
 	int GetCurrentRoom() const { return myCurrentRoom; }
 	void SetCurrentRoom(int aRoom) { myCurrentRoom = aRoom; }
+	/*
 	void GoNextRoom() { myCurrentRoom += 1; }
 	void GoPreviousRoom() { myCurrentRoom -= 1; }
+	*/
 
 private:
 	int myStrength = BaseValue_Strength;

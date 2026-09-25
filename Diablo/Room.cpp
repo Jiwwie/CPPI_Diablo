@@ -43,9 +43,10 @@ int Room::GetTarget(int aChoice) const
     return aChoice;
 }
 
-void Room::AddDoor(Door& aDoor)
+void Room::AddDoor(Door aDoor)
 {
     myDoors.push_back(aDoor);
+    //myDoorPtr = aDoor;
 }
 
 void Room::Battle(Player& aPlayer)
@@ -101,12 +102,12 @@ void Room::EnterRoom(Player& aPlayer)
     {
         case 1:
         {
-            aPlayer.GoPreviousRoom();
+            
             break;
         }
         case 2:
         {
-            aPlayer.GoNextRoom();
+            
             break;
         }
         case 3:

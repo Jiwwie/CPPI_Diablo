@@ -1,8 +1,14 @@
 #pragma once
+
+
 class Door
 {
 public:
-	Door(int anExit, int anEntry);
+	Door(int anExit, int anEntry) :
+		myEntry(anEntry),
+		myExit(anExit)
+	{
+	};
 
 	int EnterDoor(int aRoomNum);
 
