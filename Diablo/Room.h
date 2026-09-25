@@ -24,11 +24,11 @@ class Room
 
 		void Battle(Player& aPlayer);
 
-		void UseDoor(Player& aPlayer, std::vector<Room>& someRooms);
+		void SelectDoor(Player& aPlayer, std::vector<Room>& someRooms);
 	 
 		void EnterRoom(Player& aPlayer, std::vector<Room>& someRooms);
 
-		std::string GetRoomName() { return myRoomName; };
+		std::string GetRoomName() const { return myRoomName; };
 
 	private:
 		std::string myRoomName;

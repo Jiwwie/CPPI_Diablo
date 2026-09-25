@@ -29,7 +29,6 @@ int main()
     rooms[1].SetDoors(door1);
     rooms[1].SetDoors(door2);
 
-
     //Parlor
     rooms[2].SpawnEnemies(2);
     rooms[2].SetDoors(door2);

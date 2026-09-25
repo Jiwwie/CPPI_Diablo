@@ -15,6 +15,14 @@ void Room::DisplayEnemies() const
 
 void Room::SpawnEnemies(int anAmount)
 {
+    struct EnemyStats
+    {
+        int baseHealth = 25;
+        int highHealth = 75;
+        int baseDamage = 5;
+        int highDamage = 20;
+    };
+
 	for (int enemyCount = 0; enemyCount < anAmount; enemyCount++)
 	{
 		Enemy enemy(20, 5);
@@ -75,7 +83,7 @@ void Room::Battle(Player& aPlayer)
 
 }
 
-void Room::UseDoor(Player& aPlayer, std::vector<Room>& someRooms)
+void Room::SelectDoor(Player& aPlayer, std::vector<Room>& someRooms)
 {
     int menuChoice;
     system("cls");
@@ -107,7 +115,5 @@ void Room::UseDoor(Player& aPlayer, std::vector<Room>& someRooms)
 void Room::EnterRoom(Player& aPlayer, std::vector<Room>& someRooms)
 {
     Battle(aPlayer);
-    
-    UseDoor(aPlayer, someRooms);
-
+    SelectDoor(aPlayer, someRooms);
 }
