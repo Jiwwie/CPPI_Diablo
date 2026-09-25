@@ -12,17 +12,17 @@ public:
 
 	void DisplayEnemies() const;
 	void SpawnEnemies(int anAmount);
+	void SetDoors(Door& aDoor);
 	void KillEnemy(int anEnemy);
 	int GetTarget(int aChoice) const;
 
-	void AddDoor(Door aDoor);
-
 	void Battle(Player& aPlayer);
 
+	void UseDoor(Player& aPlayer);
+	 
 	void EnterRoom(Player& aPlayer);
 
 private:
-	Door* myDoorPtr;
 
 };
 

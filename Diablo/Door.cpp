@@ -2,7 +2,13 @@
 
 int Door::EnterDoor(int aRoomNum)
 {
+	if (myEntry == aRoomNum)
+	{
+		return myExit;
+	}
+	else
+	{
+		return myEntry;
+	}
 
-
-	return aRoomNum;
 }

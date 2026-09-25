@@ -22,6 +22,11 @@ void Room::SpawnEnemies(int anAmount)
 	}
 }
 
+void Room::SetDoors(Door& aDoor)
+{
+    myDoors.push_back(aDoor);
+}
+
 void Room::KillEnemy(int anEnemy)
 {
 	if (!myEnemies[anEnemy].isAlive())
@@ -41,12 +46,6 @@ int Room::GetTarget(int aChoice) const
     }
     GameFunction::ClearInputBuffer();
     return aChoice;
-}
-
-void Room::AddDoor(Door aDoor)
-{
-    myDoors.push_back(aDoor);
-    //myDoorPtr = aDoor;
 }
 
 void Room::Battle(Player& aPlayer)
@@ -76,48 +75,37 @@ void Room::Battle(Player& aPlayer)
 
 }
 
-void Room::EnterRoom(Player& aPlayer)
+void Room::UseDoor(Player& aPlayer)
 {
     int menuChoice;
-
-    Battle(aPlayer);
-
     system("cls");
     std::cout << "Current room: " << aPlayer.GetCurrentRoom() + 1 << '\n';
     std::cout << "=========================================\n";
     std::cout << "You looked for more enemies in this room.\n";
     std::cout << "But no one came.\n\n";
     std::cout << "What do you want to do?\n";
-    std::cout << "[1] Go back || [2] Go foraward || [3] Show stats\n";
+    for (int i = 0; i < myDoors.size(); i++)
+    {
+        std::cout << "[" << i + 1 << "] ";
+        std::cout << " Door \n";
+    }
     std::cin >> menuChoice;
-    while (menuChoice <= 0 || menuChoice > 3 || std::cin.fail())
+    while (menuChoice <= 0 || menuChoice > myDoors.size() || std::cin.fail())
     {
         GameFunction::ClearInputBuffer();
-        std::cout << "[1] or [2] : ";
+        std::cout << "Invalid input, try again : ";
         std::cin >> menuChoice;
     }
     GameFunction::ClearInputBuffer();
 
-    switch (menuChoice)
-    {
-        case 1:
-        {
-            
-            break;
-        }
-        case 2:
-        {
-            
-            break;
-        }
-        case 3:
-        {
-            aPlayer.ShowStats();
-            system("pause");
-            break;
-        }
-        default:
-            break;
-    }
+    aPlayer.SetCurrentRoom(myDoors[menuChoice - 1].EnterDoor(aPlayer.GetCurrentRoom()));
+
+}
+
+void Room::EnterRoom(Player& aPlayer)
+{
+    Battle(aPlayer);
+    
+    UseDoor(aPlayer);
 
 }

@@ -1,20 +1,20 @@
 #pragma once
 
-
 class Door
 {
 public:
-	Door(int anExit, int anEntry) :
+	Door(int anExit, int anEntry, bool aLocked) :
 		myEntry(anEntry),
-		myExit(anExit)
+		myExit(anExit),
+		myLocked(aLocked)
 	{
 	};
 
 	int EnterDoor(int aRoomNum);
 
 private:
-	int myEntry; //left to right entry
-	int myExit;  //right to left entry
-
+	int myEntry;
+	int myExit;
+	bool myLocked;
 };
 

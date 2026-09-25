@@ -11,14 +11,15 @@ int main()
     std::vector<Room> rooms;
 
     Player player;
-    Room room;
-    Door door(0, 1);
-    rooms.push_back(room);
-    rooms.push_back(room);
+    Room room1;
+    Room room2;
+    Door door(0, 1, false);
+    rooms.push_back(room1);
+    rooms.push_back(room2);
     rooms[0].SpawnEnemies(3);
-    rooms[0].AddDoor(door);
+    rooms[0].SetDoors(door);
     rooms[1].SpawnEnemies(1);
-    rooms[1].AddDoor(door);
+    rooms[1].SetDoors(door);
 
     while (player.isAlive() && player.GetCurrentRoom() < rooms.size())
     {
@@ -27,7 +28,7 @@ int main()
     }
 
 
-    if (room.myEnemies.size() <= 0)
+    if (rooms[player.GetCurrentRoom()].myEnemies.size() <= 0)
     {
         std::cout << "You win!\n";
     }
