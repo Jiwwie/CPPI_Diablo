@@ -14,14 +14,18 @@ int main()
     Room entranceHall("Entrance Hall");
     Room courtyard("Courtyard");
     Room parlor("Parlor");
-    Door door(0, 1, false);
+    Door door1(0, 1, false);
     Door door2(1, 2, false);
     rooms.push_back(entranceHall);
     rooms.push_back(courtyard);
+    rooms.push_back(parlor);
     rooms[0].SpawnEnemies(1);
-    rooms[0].SetDoors(door);
+    rooms[0].SetDoors(door1);
     rooms[1].SpawnEnemies(3);
-    rooms[1].SetDoors(door);
+    rooms[1].SetDoors(door1);
+    rooms[1].SetDoors(door2);
+    rooms[2].SpawnEnemies(2);
+    rooms[2].SetDoors(door2);
 
     while (player.isAlive() && player.GetCurrentRoom() < rooms.size())
     {
