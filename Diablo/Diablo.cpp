@@ -19,11 +19,18 @@ int main()
     rooms.push_back(entranceHall);
     rooms.push_back(courtyard);
     rooms.push_back(parlor);
+    
+    //Entrance hall
     rooms[0].SpawnEnemies(1);
     rooms[0].SetDoors(door1);
+
+    //Courtyard
     rooms[1].SpawnEnemies(3);
     rooms[1].SetDoors(door1);
     rooms[1].SetDoors(door2);
+
+
+    //Parlor
     rooms[2].SpawnEnemies(2);
     rooms[2].SetDoors(door2);
 
