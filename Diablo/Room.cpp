@@ -1,4 +1,5 @@
 #include "Room.h"
+#include "Door.h"
 #include "Player.h"
 #include "GameFunction.h"
 
@@ -29,7 +30,7 @@ void Room::KillEnemy(int anEnemy)
 	}
 }
 
-int Room::GetEnemyTarget(int aChoice) const
+int Room::GetTarget(int aChoice) const
 {
     std::cin >> aChoice;
     while (aChoice <= 0 || aChoice > myEnemies.size() || std::cin.fail())
@@ -40,6 +41,11 @@ int Room::GetEnemyTarget(int aChoice) const
     }
     GameFunction::ClearInputBuffer();
     return aChoice;
+}
+
+void Room::AddDoor(Door& aDoor)
+{
+    myDoors.push_back(aDoor);
 }
 
 void Room::Battle(Player& aPlayer)
@@ -56,7 +62,7 @@ void Room::Battle(Player& aPlayer)
         DisplayEnemies();
 
         std::cout << "Which enemy do you attack?\n";
-        chosenEnemy = GetEnemyTarget(chosenEnemy);
+        chosenEnemy = GetTarget(chosenEnemy);
         chosenEnemy -= 1;
         aPlayer.DoDamage(myEnemies[chosenEnemy]);
         KillEnemy(chosenEnemy);

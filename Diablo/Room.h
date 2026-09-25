@@ -7,12 +7,14 @@ class Room
 {
 public:
 	std::vector<Enemy> myEnemies;
+	std::vector<Door> myDoors;
 
 	void DisplayEnemies() const;
 	void SpawnEnemies(int anAmount);
 	void KillEnemy(int anEnemy);
+	int GetTarget(int aChoice) const;
 
-	int GetEnemyTarget(int aChoice) const;
+	void AddDoor(Door& aDoor);
 
 	void Battle(Player& aPlayer);
 
