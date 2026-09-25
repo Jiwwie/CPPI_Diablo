@@ -49,7 +49,7 @@ int Room::GetTarget(int aChoice) const
     while (aChoice <= 0 || aChoice > myEnemies.size() || std::cin.fail())
     {
         GameFunction::ClearInputBuffer();
-        std::cout << "There's no enemy there...\n ";
+        std::cout << "There's no enemy there...\n";
         std::cin >> aChoice;
     }
     GameFunction::ClearInputBuffer();
