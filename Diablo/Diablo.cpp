@@ -7,27 +7,54 @@
 #include "Enum.h"
 #include "GameFunction.h"
 
-void CreateRooms(std::vector<Room>& someRooms);
-
 int main()
 {
     std::vector<Room> rooms;
-    CreateRooms(rooms);
-    Player player;
+    GameFunction::CreateRooms(rooms);
+    Player player(10, 6, 3);
+    Player cheater(9999, 9999, 9999);
 
+    int startGame = 0;
 
-    while (player.isAlive() && player.GetCurrentRoom() < rooms.size())
+    std::cout << "== Welcome to Diablue ==\n\n";
+    std::cout << "[" << 1 << "]" << " Start game ->\n\n";
+    std::cout << "[" << 2 << "]" << " Activate god mode ->\n\n";
+
+    std::cin >> startGame;
+
+    switch (startGame)
     {
-
-        if (player.GetCurrentRoom() == static_cast<int>(Enum::RoomName::Room46))
+        case 1:
         {
+            while (player.isAlive() && player.GetCurrentRoom() < rooms.size())
+            {
+                if (player.GetCurrentRoom() == static_cast<int>(Enum::RoomName::Room46))
+                {
+                    break;
+                }
+
+                rooms[player.GetCurrentRoom()].EnterRoom(player, rooms);
+            }
             break;
         }
+        case 2:
+        {
+            while (cheater.isAlive() && cheater.GetCurrentRoom() < rooms.size())
+            {
+                if (cheater.GetCurrentRoom() == static_cast<int>(Enum::RoomName::Room46))
+                {
+                    break;
+                }
 
-        rooms[player.GetCurrentRoom()].EnterRoom(player, rooms);
+                rooms[cheater.GetCurrentRoom()].EnterRoom(cheater, rooms);
+            }
+            break;
+        }
+        default:
+            break;
     }
 
-
+    
     if (rooms[player.GetCurrentRoom()].myEnemies.size() <= 0 && player.isAlive())
     {
         system("cls");
@@ -44,45 +71,4 @@ int main()
 
 }
 
-void CreateRooms(std::vector<Room>& someRooms)
-{
-    int EntranceHall = static_cast<int>(Enum::RoomName::EntranceHall);
-    int Courtyard = static_cast<int>(Enum::RoomName::Courtyard);
-    int Parlor = static_cast<int>(Enum::RoomName::Parlor);
-    int Room46 = static_cast<int>(Enum::RoomName::Room46);
-
-    Room entranceHall("Entrance Hall");
-    Room courtyard("Courtyard");
-    Room parlor("Parlor");
-    Room room46("Room 46");
-
-    someRooms.push_back(entranceHall);
-    someRooms.push_back(courtyard);
-    someRooms.push_back(parlor);
-    someRooms.push_back(room46);
-
-    Door door1(EntranceHall, Courtyard, false);
-    Door door2(Courtyard, Parlor, false);
-    Door door3(Parlor, Room46, true);
-
-    Door cheatDoor(EntranceHall, Room46, true);
-
-    //Entrance hall
-    someRooms[0].SpawnEnemies(1);
-    someRooms[0].SetDoors(door1);
-    someRooms[0].SetDoors(cheatDoor);
-
-    //Courtyard
-    someRooms[1].SpawnEnemies(3);
-    someRooms[1].SetDoors(door1);
-    someRooms[1].SetDoors(door2);
-
-    //Parlor
-    someRooms[2].SpawnEnemies(2);
-    someRooms[2].SetDoors(door2);
-    someRooms[2].SetDoors(door3);
-
-    //Room 46
-    someRooms[3].SetDoors(door3);
-}
 

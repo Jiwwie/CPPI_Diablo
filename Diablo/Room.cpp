@@ -1,6 +1,7 @@
 #include "Room.h"
 #include "Door.h"
 #include "Player.h"
+#include "Enum.h"
 #include "GameFunction.h"
 
 void Room::DisplayEnemies() const
@@ -36,6 +37,8 @@ void Room::SetDoors(Door& aDoor)
 {
     myDoors.push_back(aDoor);
 }
+
+
 
 void Room::KillEnemy(int anEnemy)
 {
@@ -109,12 +112,17 @@ void Room::SelectDoor(Player& aPlayer, std::vector<Room>& someRooms)
         std::cin >> doorChoice;
     }
     GameFunction::ClearInputBuffer();
+    doorChoice -= 1;
 
-    if (myDoors[doorChoice - 1].GetLocked())
+    if (myDoors[doorChoice].GetLocked())
     {
-        myDoors[doorChoice - 1].UnlockDoor();
+        myDoors[doorChoice].UnlockDoor();
     }
-    aPlayer.SetCurrentRoom(myDoors[doorChoice - 1].EnterDoor(aPlayer.GetCurrentRoom()));
+
+    if (!(myDoors[doorChoice].GetLocked()))
+    {
+        aPlayer.SetCurrentRoom(myDoors[doorChoice].EnterDoor(aPlayer.GetCurrentRoom()));
+    }
 
 }
 

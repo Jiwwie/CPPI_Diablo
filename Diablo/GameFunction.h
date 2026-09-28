@@ -10,4 +10,6 @@ namespace GameFunction
         std::cin.ignore(10000, '\n');
     }
     
+    void CreateRooms(std::vector<Room>& someRooms);
+
 }
