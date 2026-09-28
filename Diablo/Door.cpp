@@ -32,21 +32,32 @@ void Door::UnlockDoor(Player& aPlayer)
 			{
 				if (aPlayer.GetAgility() >= 5)
 				{
-					std::cout << "You lockpick the door\n";
+					std::cout << "\n*Click* . . . The door opens before you...\n\n";
+					system("pause");
 					myLocked = false;
 					byDoor = false;
 				}
 				else
 				{
-					std::cout << "You FAIL\n";
+					std::cout << "\nYou try to pick the lock but FAIL miserably\n\n";
 				}
 				break;
 			}
 			case 2:
 			{
-				std::cout << "You break the door\n";
-				myLocked = false;
-				byDoor = false;
+				if (aPlayer.GetStrength() >= 8)
+				{
+					std::cout << "\nYou hit the door and it crumbles before you...\n";
+					std::cout << "You feel masculine.\n\n";
+					system("pause");
+					myLocked = false;
+					byDoor = false;
+				}
+				else
+				{
+					std::cout << "\nYou hit the door with all your strength...\n";
+					std::cout << "But it does not budge.\n\n";
+				}
 				break;
 			}
 			case 3:
