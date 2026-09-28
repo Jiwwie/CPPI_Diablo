@@ -13,7 +13,7 @@ public:
 	bool isAlive() const { return myHealth > 0; }
 
 	void TakeDamage(int someDamage);
-	void DoDamage(Player& aPlayer);
+	void DoDamage(Player& aPlayer) const;
 
 	void ShowStats() const;
 

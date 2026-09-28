@@ -19,7 +19,7 @@ void Room::SpawnEnemies(int anAmount)
     {
         int baseHealth = 25;
         int highHealth = 75;
-        int baseDamage = 5;
+        int baseDamage = 10;
         int highDamage = 20;
     };
 
@@ -87,7 +87,7 @@ void Room::Battle(Player& aPlayer)
 
 void Room::SelectDoor(Player& aPlayer, std::vector<Room>& someRooms)
 {
-    int menuChoice;
+    int doorChoice;
     system("cls");
     std::cout << "Current room: " << myRoomName << '\n';
     std::cout << "=========================================\n";
@@ -100,17 +100,21 @@ void Room::SelectDoor(Player& aPlayer, std::vector<Room>& someRooms)
         std::cout << " Door to " << someRooms[myDoors[i].EnterDoor(aPlayer.GetCurrentRoom())].GetRoomName() << "\n";
     }
 
-    std::cin >> menuChoice;
+    std::cin >> doorChoice;
 
-    while (menuChoice <= 0 || menuChoice > myDoors.size() || std::cin.fail())
+    while (doorChoice <= 0 || doorChoice > myDoors.size() || std::cin.fail())
     {
         GameFunction::ClearInputBuffer();
         std::cout << "Invalid input, try again : ";
-        std::cin >> menuChoice;
+        std::cin >> doorChoice;
     }
     GameFunction::ClearInputBuffer();
 
-    aPlayer.SetCurrentRoom(myDoors[menuChoice - 1].EnterDoor(aPlayer.GetCurrentRoom()));
+    if (myDoors[doorChoice - 1].GetLocked())
+    {
+        myDoors[doorChoice - 1].UnlockDoor();
+    }
+    aPlayer.SetCurrentRoom(myDoors[doorChoice - 1].EnterDoor(aPlayer.GetCurrentRoom()));
 
 }
 

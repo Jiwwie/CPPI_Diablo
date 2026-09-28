@@ -10,7 +10,11 @@ public:
 	{
 	};
 
-	int EnterDoor(int aRoomNum);
+	void UnlockDoor();
+
+	int EnterDoor(int aRoomNum) const;
+
+	bool GetLocked() const { return myLocked; }
 
 private:
 	int myEntry;

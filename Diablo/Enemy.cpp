@@ -9,9 +9,8 @@ void Enemy::TakeDamage(int someDamage)
     myHealth -= someDamage;
 }
 
-void Enemy::DoDamage(Player& aPlayer)
+void Enemy::DoDamage(Player& aPlayer) const
 {
-    std::cout << "Enemy hits you. You lose " << myDamage << " HP.\n";
     aPlayer.TakeDamage(myDamage);
 }
 

@@ -11,7 +11,7 @@ public:
 	
 	bool isAlive() const { return myCurrentHealth > 0; }
 
-	int GetDamageValue() const { return BaseValue_Damage + myStrength / 2; }
+	int GetDamageValue() const { return myBaseDamage + myStrength / 2; }
 	int GetMaxHealth() const { return myEndurance * 5 + myStrength * 6 + myAgility * 3; }
 	int GetCurrentHealth() const { return myCurrentHealth; }
 	int GetDefense() const { return myEndurance + myAgility; }
@@ -21,20 +21,22 @@ public:
 	void SetCurrentRoom(int aRoom) { myCurrentRoom = aRoom; }
 
 private:
-	int myStrength = BaseValue_Strength;
-	int myAgility = BaseValue_Agility;
-	int myEndurance = BaseValue_Endurance;
+	enum class myStats
+	{
+		FirstRoom = 0,
+		Strength = 10,
+		Agility = 6,
+		Endurance = 3,
+		Damage = 10
+	};
+
+	int myStrength = static_cast<int>(myStats::Strength);
+	int myAgility = static_cast<int>(myStats::Agility);
+	int myEndurance = static_cast<int>(myStats::Endurance);
+
+	int myBaseDamage = static_cast<int>(myStats::Damage);
 
 	int myCurrentHealth = GetMaxHealth();
-	int myCurrentRoom = BaseValue_FirstRoom;
+	int myCurrentRoom = static_cast<int>(myStats::FirstRoom);
 
-	enum BaseValue
-	{
-		BaseValue_FirstRoom = 0,
-		BaseValue_Strength = 10,
-		BaseValue_Agility = 5,
-		BaseValue_Endurance = 5,
-		
-		BaseValue_Damage = 10
-	};
 };

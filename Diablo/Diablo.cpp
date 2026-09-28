@@ -12,9 +12,9 @@ void CreateRooms(std::vector<Room>& someRooms);
 int main()
 {
     std::vector<Room> rooms;
+    CreateRooms(rooms);
     Player player;
 
-    CreateRooms(rooms);
 
     while (player.isAlive() && player.GetCurrentRoom() < rooms.size())
     {
@@ -36,6 +36,7 @@ int main()
     else
     {
         system("cls");
+        std::cout << "The enemy deals a final blow...\n";
         std::cout << "You died.\n";
     }
 
@@ -62,11 +63,14 @@ void CreateRooms(std::vector<Room>& someRooms)
 
     Door door1(EntranceHall, Courtyard, false);
     Door door2(Courtyard, Parlor, false);
-    Door door3(Parlor, Room46, false);
+    Door door3(Parlor, Room46, true);
+
+    Door cheatDoor(EntranceHall, Room46, true);
 
     //Entrance hall
     someRooms[0].SpawnEnemies(1);
     someRooms[0].SetDoors(door1);
+    someRooms[0].SetDoors(cheatDoor);
 
     //Courtyard
     someRooms[1].SpawnEnemies(3);

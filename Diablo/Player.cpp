@@ -5,7 +5,10 @@
 
 void Player::TakeDamage(int someDamage)
 {
-	myCurrentHealth -= someDamage;
+	int damageTaken = someDamage - (GetDefense() / 2);
+
+	std::cout << "Enemy hits you. You lose " << damageTaken << " HP.\n";
+	myCurrentHealth -= (damageTaken);
 }
 
 void Player::DoDamage(Enemy& anEnemy) const
