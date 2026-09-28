@@ -150,6 +150,7 @@
   <ItemGroup>
     <ClInclude Include="Door.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="Enum.h" />
     <ClInclude Include="GameFunction.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Room.h" />

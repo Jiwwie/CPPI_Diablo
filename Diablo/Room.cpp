@@ -23,9 +23,11 @@ void Room::SpawnEnemies(int anAmount)
         int highDamage = 20;
     };
 
+    EnemyStats stat;
+
 	for (int enemyCount = 0; enemyCount < anAmount; enemyCount++)
 	{
-		Enemy enemy(20, 5);
+		Enemy enemy(stat.baseHealth, stat.baseDamage);
 		myEnemies.push_back(enemy);
 	}
 }
@@ -115,5 +117,9 @@ void Room::SelectDoor(Player& aPlayer, std::vector<Room>& someRooms)
 void Room::EnterRoom(Player& aPlayer, std::vector<Room>& someRooms)
 {
     Battle(aPlayer);
-    SelectDoor(aPlayer, someRooms);
+
+    if (aPlayer.isAlive())
+    {
+        SelectDoor(aPlayer, someRooms);
+    }
 }
