@@ -11,7 +11,7 @@ public:
 	{
 	};
 
-	void UnlockDoor();
+	void UnlockDoor(Player& aPlayer);
 
 	int EnterDoor(int aRoomNum) const;
 

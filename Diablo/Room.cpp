@@ -116,7 +116,7 @@ void Room::SelectDoor(Player& aPlayer, std::vector<Room>& someRooms)
 
     if (myDoors[doorChoice].GetLocked())
     {
-        myDoors[doorChoice].UnlockDoor();
+        myDoors[doorChoice].UnlockDoor(aPlayer);
     }
 
     if (!(myDoors[doorChoice].GetLocked()))

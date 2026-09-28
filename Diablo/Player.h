@@ -25,6 +25,8 @@ public:
 	int GetCurrentHealth() const { return myCurrentHealth; }
 	int GetDefense() const { return myEndurance + myAgility; }
 	int GetInventoryCap() const { return myStrength + myAgility / 3; }
+	int GetAgility() const { return myAgility; }
+	int GetStrength() const { return myStrength; }
 
 	int GetCurrentRoom() const { return myCurrentRoom; }
 	void SetCurrentRoom(int aRoom) { myCurrentRoom = aRoom; }

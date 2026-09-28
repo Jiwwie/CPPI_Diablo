@@ -3,7 +3,7 @@
 #include "Player.h"
 #include "GameFunction.h"
 
-void Door::UnlockDoor()
+void Door::UnlockDoor(Player& aPlayer)
 {
 	bool byDoor = true;
 
@@ -30,9 +30,16 @@ void Door::UnlockDoor()
 		{
 			case 1:
 			{
-				std::cout << "You lockpick the door\n";
-				myLocked = false;
-				byDoor = false;
+				if (aPlayer.GetAgility() >= 5)
+				{
+					std::cout << "You lockpick the door\n";
+					myLocked = false;
+					byDoor = false;
+				}
+				else
+				{
+					std::cout << "You FAIL\n";
+				}
 				break;
 			}
 			case 2:
@@ -50,6 +57,8 @@ void Door::UnlockDoor()
 			default:
 				break;
 		}
+
+		system("pause");
 
 	}
 }
