@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Door.h"
 #include "Player.h"
+#include "Consts.h"
 #include "GameFunction.h"
 
 void Door::UnlockDoor(Player& aPlayer)
@@ -30,7 +31,7 @@ void Door::UnlockDoor(Player& aPlayer)
 		{
 			case 1:
 			{
-				if (aPlayer.GetAgility() >= 5)
+				if (aPlayer.GetAgility() >= Const::SKILL_CHECK_AGILITY)
 				{
 					std::cout << "\n*Click* . . . The door opens before you...\n\n";
 					myLocked = false;
@@ -44,7 +45,7 @@ void Door::UnlockDoor(Player& aPlayer)
 			}
 			case 2:
 			{
-				if (aPlayer.GetStrength() >= 8)
+				if (aPlayer.GetStrength() >= Const::SKILL_CHECK_STRENGTH)
 				{
 					std::cout << "\nYou hit the door and it crumbles before you...\n";
 					std::cout << "You feel masculine.\n\n";

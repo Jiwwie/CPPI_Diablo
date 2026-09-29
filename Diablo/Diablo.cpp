@@ -17,8 +17,8 @@ int main()
 
     std::cout << "== Welcome to Diablue ==\n";
     std::cout << "\nYour goal is to navigate the mansion and get to \"Room 46\". \n\n";
-    std::cout << "[" << 1 << "]" << " Start game ->\n\n";
-    std::cout << "[" << 2 << "]" << " Activate god mode ->\n\n";
+    std::cout << "[1] Start game ->\n\n";
+    std::cout << "[2] Activate god mode ->\n\n";
 
     std::cin >> startGame;
     while (startGame <= 0 || startGame > 2 || std::cin.fail())
