@@ -88,19 +88,72 @@ void Room::Battle(Player& aPlayer)
 
 }
 
+void Room::PostBattle(Player& aPlayer) const
+{
+    int choice = 0;
+    while (choice != 3)
+    {
+        choice = 0;
+        system("cls");
+        std::cout << "Current room: " << myRoomName << '\n';
+        std::cout << "=========================================\n";
+        std::cout << "You looked for more enemies in this room.\n";
+        std::cout << "But no one came.\n\n";
+        std::cout << "What do you do?\n";
+
+        std::cout << "[" << 1 << "] Show Stats\n\n";
+        std::cout << "[" << 2 << "] Find loot\n\n";
+        std::cout << "[" << 3 << "] Go to doors\n\n";
+
+        std::cin >> choice;
+
+        while (choice <= 0 || choice > 3 || std::cin.fail())
+        {
+            GameFunction::ClearInputBuffer();
+            std::cout << "Invalid input, try again : ";
+            std::cin >> choice;
+        }
+        GameFunction::ClearInputBuffer();
+
+        switch (choice)
+        {
+            case 1:
+            {
+                aPlayer.ShowStats();
+                system("pause");
+                break;
+            }
+            case 2:
+            {
+                system("cls");
+                std::cout << "You looked for loot but the room was empty\n";
+                system("pause");
+                break;
+            }
+            case 3:
+            {
+                break;
+            }
+            default:
+                break;
+        }
+
+    }
+
+}
+
 void Room::SelectDoor(Player& aPlayer, std::vector<Room>& someRooms)
 {
     int doorChoice;
     system("cls");
     std::cout << "Current room: " << myRoomName << '\n';
     std::cout << "=========================================\n";
-    std::cout << "You looked for more enemies in this room.\n";
-    std::cout << "But no one came.\n\n";
-    std::cout << "What do you want to do?\n";
+    std::cout << "Before you stands " << myDoors.size() << " doors.\n";
+    std::cout << "Which door do you approach?\n\n";
     for (int i = 0; i < myDoors.size(); i++)
     {
         std::cout << "[" << i + 1 << "] ";
-        std::cout << " Door to " << someRooms[myDoors[i]->EnterDoor(aPlayer.GetCurrentRoom())].GetRoomName() << "\n";
+        std::cout << " Door to " << someRooms[myDoors[i]->EnterDoor(aPlayer.GetCurrentRoom())].GetRoomName() << "\n\n";
     }
 
     std::cin >> doorChoice;
@@ -129,9 +182,9 @@ void Room::SelectDoor(Player& aPlayer, std::vector<Room>& someRooms)
 void Room::EnterRoom(Player& aPlayer, std::vector<Room>& someRooms)
 {
     Battle(aPlayer);
-
     if (aPlayer.isAlive())
     {
+        PostBattle(aPlayer);
         SelectDoor(aPlayer, someRooms);
     }
 }

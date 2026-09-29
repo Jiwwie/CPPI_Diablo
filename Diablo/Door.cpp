@@ -33,7 +33,6 @@ void Door::UnlockDoor(Player& aPlayer)
 				if (aPlayer.GetAgility() >= 5)
 				{
 					std::cout << "\n*Click* . . . The door opens before you...\n\n";
-					system("pause");
 					myLocked = false;
 					byDoor = false;
 				}
@@ -49,7 +48,6 @@ void Door::UnlockDoor(Player& aPlayer)
 				{
 					std::cout << "\nYou hit the door and it crumbles before you...\n";
 					std::cout << "You feel masculine.\n\n";
-					system("pause");
 					myLocked = false;
 					byDoor = false;
 				}

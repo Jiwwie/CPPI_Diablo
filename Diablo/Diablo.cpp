@@ -58,13 +58,14 @@ int main()
     if (rooms[player.GetCurrentRoom()].myEnemies.size() <= 0 && player.isAlive())
     {
         system("cls");
-        std::cout << "You win!\n";
+        std::cout << "You reached Room 46!\n";
+        std::cout << "Victory...!\n";
     }
     else
     {
         system("cls");
         std::cout << "The enemy deals a final blow...\n";
-        std::cout << "You died.\n";
+        std::cout << "You died! :(\n";
     }
 
     system("pause");

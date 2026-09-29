@@ -25,7 +25,7 @@ class Room
 		int GetTarget(int aChoice) const;
 
 		void Battle(Player& aPlayer);
-
+		void PostBattle(Player& aPlayer) const;
 		void SelectDoor(Player& aPlayer, std::vector<Room>& someRooms);
 	 
 		void EnterRoom(Player& aPlayer, std::vector<Room>& someRooms);
