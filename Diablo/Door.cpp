@@ -60,6 +60,8 @@ void Door::UnlockDoor(Player& aPlayer)
 			}
 			case 3:
 			{
+				std::cout << "\nThe locked door intimidates you...\n";
+				std::cout << "You slowly back away from the door.\n\n";
 				byDoor = false;
 				break;
 			}

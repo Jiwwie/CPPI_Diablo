@@ -24,12 +24,12 @@ void GameFunction::CreateRooms(std::vector<Room>& someRooms)
     static Door door2(Courtyard, Parlor, false);
     static Door door3(Parlor, Room46, true);
 
-    static Door cheatDoor(EntranceHall, Room46, true);
+    //static Door cheatDoor(EntranceHall, Room46, true);
 
     //Entrance hall
     someRooms[0].SpawnEnemies(1);
     someRooms[0].SetDoors(&door1);
-    someRooms[0].SetDoors(&cheatDoor);
+    //someRooms[0].SetDoors(&cheatDoor);
 
     //Courtyard
     someRooms[1].SpawnEnemies(3);
@@ -43,4 +43,17 @@ void GameFunction::CreateRooms(std::vector<Room>& someRooms)
 
     //Room 46
     someRooms[3].SetDoors(&door3);
+}
+
+void GameFunction::StartGame(Player& aPlayer, std::vector<Room>& someRooms)
+{
+    while (aPlayer.isAlive() && aPlayer.GetCurrentRoom() < someRooms.size())
+    {
+        if (aPlayer.GetCurrentRoom() == static_cast<int>(Enum::RoomName::Room46))
+        {
+            break;
+        }
+
+        someRooms[aPlayer.GetCurrentRoom()].EnterRoom(aPlayer, someRooms);
+    }
 }

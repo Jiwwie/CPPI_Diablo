@@ -26,28 +26,12 @@ int main()
     {
         case 1:
         {
-            while (player.isAlive() && player.GetCurrentRoom() < rooms.size())
-            {
-                if (player.GetCurrentRoom() == static_cast<int>(Enum::RoomName::Room46))
-                {
-                    break;
-                }
-
-                rooms[player.GetCurrentRoom()].EnterRoom(player, rooms);
-            }
+            GameFunction::StartGame(player, rooms);
             break;
         }
         case 2:
         {
-            while (cheater.isAlive() && cheater.GetCurrentRoom() < rooms.size())
-            {
-                if (cheater.GetCurrentRoom() == static_cast<int>(Enum::RoomName::Room46))
-                {
-                    break;
-                }
-
-                rooms[cheater.GetCurrentRoom()].EnterRoom(cheater, rooms);
-            }
+            GameFunction::StartGame(cheater, rooms);
             break;
         }
         default:

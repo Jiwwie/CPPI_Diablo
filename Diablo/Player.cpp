@@ -21,7 +21,6 @@ void Player::DoDamage(Enemy& anEnemy) const
 
 void Player::ShowStats() const
 {
-	system("cls");
 	std::cout << "== STATS == ";
 	std::cout << "\nHP: ";
 	std::cout << GetCurrentHealth() << "/" << GetMaxHealth();

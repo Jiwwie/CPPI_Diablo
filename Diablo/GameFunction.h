@@ -12,4 +12,6 @@ namespace GameFunction
     
     void CreateRooms(std::vector<Room>& someRooms);
 
+    void StartGame(Player& aPlayer, std::vector<Room>& someRooms);
+
 }

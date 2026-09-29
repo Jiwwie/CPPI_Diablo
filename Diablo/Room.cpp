@@ -67,12 +67,12 @@ void Room::Battle(Player& aPlayer)
     {
         int chosenEnemy = 0;
         system("cls");
-        aPlayer.ShowStats();
         std::cout << "Current room: " << myRoomName << '\n';
         std::cout << "Enemies in room: " << myEnemies.size();
 
         std::cout << "\n\n";
         DisplayEnemies();
+        aPlayer.ShowStats();
 
         std::cout << "Which enemy do you attack?\n";
         chosenEnemy = GetTarget(chosenEnemy);
