@@ -20,27 +20,27 @@ void GameFunction::CreateRooms(std::vector<Room>& someRooms)
     someRooms.push_back(parlor);
     someRooms.push_back(room46);
 
-    Door door1(EntranceHall, Courtyard, true);
-    Door door2(Courtyard, Parlor, false);
-    Door door3(Parlor, Room46, true);
+    static Door door1(EntranceHall, Courtyard, true);
+    static Door door2(Courtyard, Parlor, false);
+    static Door door3(Parlor, Room46, true);
 
-    Door cheatDoor(EntranceHall, Room46, true);
+    static Door cheatDoor(EntranceHall, Room46, true);
 
     //Entrance hall
     someRooms[0].SpawnEnemies(1);
-    someRooms[0].SetDoors(door1);
-    someRooms[0].SetDoors(cheatDoor);
+    someRooms[0].SetDoors(&door1);
+    someRooms[0].SetDoors(&cheatDoor);
 
     //Courtyard
     someRooms[1].SpawnEnemies(3);
-    someRooms[1].SetDoors(door1);
-    someRooms[1].SetDoors(door2);
+    someRooms[1].SetDoors(&door1);
+    someRooms[1].SetDoors(&door2);
 
     //Parlor
     someRooms[2].SpawnEnemies(2);
-    someRooms[2].SetDoors(door2);
-    someRooms[2].SetDoors(door3);
+    someRooms[2].SetDoors(&door2);
+    someRooms[2].SetDoors(&door3);
 
     //Room 46
-    someRooms[3].SetDoors(door3);
+    someRooms[3].SetDoors(&door3);
 }

@@ -14,11 +14,11 @@ class Room
 
 
 		std::vector<Enemy> myEnemies;
-		std::vector<Door> myDoors;
+		std::vector<Door*> myDoors;
 		
 		void DisplayEnemies() const;
 		void SpawnEnemies(int anAmount);
-		void SetDoors(Door& aDoor);
+		void SetDoors(Door* aDoor);
 		
 		void KillEnemy(int anEnemy);
 

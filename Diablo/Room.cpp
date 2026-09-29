@@ -33,7 +33,7 @@ void Room::SpawnEnemies(int anAmount)
 	}
 }
 
-void Room::SetDoors(Door& aDoor)
+void Room::SetDoors(Door* aDoor)
 {
     myDoors.push_back(aDoor);
 }
@@ -100,7 +100,7 @@ void Room::SelectDoor(Player& aPlayer, std::vector<Room>& someRooms)
     for (int i = 0; i < myDoors.size(); i++)
     {
         std::cout << "[" << i + 1 << "] ";
-        std::cout << " Door to " << someRooms[myDoors[i].EnterDoor(aPlayer.GetCurrentRoom())].GetRoomName() << "\n";
+        std::cout << " Door to " << someRooms[myDoors[i]->EnterDoor(aPlayer.GetCurrentRoom())].GetRoomName() << "\n";
     }
 
     std::cin >> doorChoice;
@@ -114,14 +114,14 @@ void Room::SelectDoor(Player& aPlayer, std::vector<Room>& someRooms)
     GameFunction::ClearInputBuffer();
     doorChoice -= 1;
 
-    if (myDoors[doorChoice].GetLocked())
+    if (myDoors[doorChoice]->GetLocked())
     {
-        myDoors[doorChoice].UnlockDoor(aPlayer);
+        myDoors[doorChoice]->UnlockDoor(aPlayer);
     }
 
-    if (!(myDoors[doorChoice].GetLocked()))
+    if (!(myDoors[doorChoice]->GetLocked()))
     {
-        aPlayer.SetCurrentRoom(myDoors[doorChoice].EnterDoor(aPlayer.GetCurrentRoom()));
+        aPlayer.SetCurrentRoom(myDoors[doorChoice]->EnterDoor(aPlayer.GetCurrentRoom()));
     }
 
 }
