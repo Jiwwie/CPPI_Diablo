@@ -49,9 +49,9 @@ void GameFunction::PickCheats(Player& aPlayer)
 {
     int activateCheats = 0;
     system("cls");
-    std::cout << "[" << 1 << "]" << " Activate UNDEAD\n\n";
-    std::cout << "[" << 2 << "]" << " Activate GIANTS STRENGTH\n\n";
-    std::cout << "[" << 3 << "]" << " Activate BOTH\n\n";
+    std::cout << "[1] Activate UNDEAD\n\n";
+    std::cout << "[2] Activate GIANTS STRENGTH\n\n";
+    std::cout << "[3] Activate BOTH\n\n";
 
     std::cin >> activateCheats;
     while (activateCheats <= 0 || activateCheats > 3 || std::cin.fail())
