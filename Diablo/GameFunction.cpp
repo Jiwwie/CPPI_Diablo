@@ -45,15 +45,57 @@ void GameFunction::CreateRooms(std::vector<Room>& someRooms)
     someRooms[3].SetDoors(&door3);
 }
 
+void GameFunction::PickCheats(Player& aPlayer)
+{
+    int activateCheats = 0;
+    system("cls");
+    std::cout << "[" << 1 << "]" << " Activate UNDEAD\n\n";
+    std::cout << "[" << 2 << "]" << " Activate GIANTS STRENGTH\n\n";
+    std::cout << "[" << 3 << "]" << " Activate BOTH\n\n";
+
+    std::cin >> activateCheats;
+    while (activateCheats <= 0 || activateCheats > 3 || std::cin.fail())
+    {
+        GameFunction::ClearInputBuffer();
+        std::cout << "Invalid input, try again : ";
+        std::cin >> activateCheats;
+    }
+    GameFunction::ClearInputBuffer();
+
+    switch (activateCheats)
+    {
+    case 1:
+    {
+        aPlayer.SetUndead();
+        break;
+    }
+    case 2:
+    {
+        aPlayer.SetGiantsStrength();
+        break;
+    }
+    case 3:
+    {
+        aPlayer.SetUndead();
+        aPlayer.SetGiantsStrength();
+        break;
+    }
+    default:
+        break;
+    }
+}
+
 void GameFunction::StartGame(Player& aPlayer, std::vector<Room>& someRooms)
 {
     while (aPlayer.isAlive() && aPlayer.GetCurrentRoom() < someRooms.size())
     {
+        someRooms[aPlayer.GetCurrentRoom()].EnterRoom(aPlayer, someRooms);
+        
         if (aPlayer.GetCurrentRoom() == static_cast<int>(Enum::RoomName::Room46))
         {
+            Room::RoomIntro(aPlayer);
             break;
         }
-
-        someRooms[aPlayer.GetCurrentRoom()].EnterRoom(aPlayer, someRooms);
+        
     }
 }

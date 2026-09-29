@@ -16,7 +16,7 @@ int main()
     int startGame = 0;
 
     std::cout << "== Welcome to Diablue ==\n";
-    std::cout << "Get to \"Room 46\"!!! \n\n";
+    std::cout << "\nYour goal is to navigate the mansion and get to \"Room 46\". \n\n";
     std::cout << "[" << 1 << "]" << " Start game ->\n\n";
     std::cout << "[" << 2 << "]" << " Activate god mode ->\n\n";
 
@@ -38,43 +38,7 @@ int main()
         }
         case 2:
         {
-            int activateCheats = 0;
-            system("cls");
-            std::cout << "[" << 1 << "]" << " Activate UNDEAD\n\n";
-            std::cout << "[" << 2 << "]" << " Activate GIANTS STRENGTH\n\n";
-            std::cout << "[" << 3 << "]" << " Activate BOTH\n\n";
-
-            std::cin >> activateCheats;
-            while (startGame <= 0 || startGame > 3 || std::cin.fail())
-            {
-                GameFunction::ClearInputBuffer();
-                std::cout << "Invalid input, try again : ";
-                std::cin >> startGame;
-            }
-            GameFunction::ClearInputBuffer();
-
-            switch (activateCheats)
-            {
-                case 1:
-                {
-                    player.SetUndead();
-                    break;
-                }
-                case 2:
-                {
-                    player.SetGiantsStrength();
-                    break;
-                }
-                case 3:
-                {
-                    player.SetUndead();
-                    player.SetGiantsStrength();
-                    break;
-                }
-                default:
-                    break;
-            }
-
+            GameFunction::PickCheats(player);
             GameFunction::StartGame(player, rooms);
             break;
         }

@@ -39,7 +39,6 @@ void Room::SetDoors(Door* aDoor)
 }
 
 
-
 void Room::KillEnemy(int anEnemy)
 {
 	if (!myEnemies[anEnemy].isAlive())
@@ -59,6 +58,52 @@ int Room::GetTarget(int aChoice) const
     }
     GameFunction::ClearInputBuffer();
     return aChoice;
+}
+
+void Room::RoomIntro(Player& aPlayer)
+{
+    const int EntranceHall = static_cast<int>(Enum::RoomName::EntranceHall);
+    const int Courtyard = static_cast<int>(Enum::RoomName::Courtyard);
+    const int Parlor = static_cast<int>(Enum::RoomName::Parlor);
+    const int Room46 = static_cast<int>(Enum::RoomName::Room46);
+
+    int currentRoom = aPlayer.GetCurrentRoom();
+
+    system("cls");
+    switch (currentRoom)
+    {
+        case EntranceHall:
+        {
+            std::cout << "You walk into the ENTRANCE HALL...\n";
+            std::cout << "The lobby is dark and garish.\n";
+            std::cout << "You feel as though your adventure is about to begin...\n\n";
+            break;
+        }
+        case Courtyard:
+        {
+            std::cout << "You walk into the COURTYARD...\n";
+            std::cout << "Although you're still inside the mansion,\n";
+            std::cout << "This room feels oddly similar to the outside.\n\n";
+            break;
+        }
+        case Parlor:
+        {
+            std::cout << "You walk into the PARLOR...\n";
+            std::cout << "The room is furnished with couches and armchairs.\n";
+            std::cout << "You feel cozy.\n\n";
+            break;
+        }
+        case Room46:
+        {
+            std::cout << "You walk into ROOM 46...\n";
+            std::cout << "At last, your adventure through the mansion comes to an end.\n\n";
+            break;
+        }
+        default:
+            break;
+    }
+
+    system("pause");
 }
 
 void Room::Battle(Player& aPlayer)
@@ -181,6 +226,7 @@ void Room::SelectDoor(Player& aPlayer, std::vector<Room>& someRooms)
 
 void Room::EnterRoom(Player& aPlayer, std::vector<Room>& someRooms)
 {
+    RoomIntro(aPlayer);
     Battle(aPlayer);
     if (aPlayer.isAlive())
     {
