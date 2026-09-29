@@ -138,7 +138,6 @@ void Room::PostBattle(Player& aPlayer) const
     int choice = 0;
     while (choice != 3)
     {
-        choice = 0;
         system("cls");
         std::cout << "Current room: " << myRoomName << '\n';
         std::cout << "=========================================\n";
@@ -146,9 +145,9 @@ void Room::PostBattle(Player& aPlayer) const
         std::cout << "But no one came.\n\n";
         std::cout << "What do you do?\n";
 
-        std::cout << "[" << 1 << "] Show Stats\n\n";
-        std::cout << "[" << 2 << "] Find loot\n\n";
-        std::cout << "[" << 3 << "] Go to doors\n\n";
+        std::cout << "[1] Show Stats\n\n";
+        std::cout << "[2] Find loot\n\n";
+        std::cout << "[3] Go to doors\n\n";
 
         std::cin >> choice;
 
