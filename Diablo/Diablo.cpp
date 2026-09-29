@@ -11,8 +11,7 @@ int main()
 {
     std::vector<Room> rooms;
     GameFunction::CreateRooms(rooms);
-    Player player(10, 6, 3);
-    //Player cheater(9999, 9999, 9999);
+    Player player;
 
     int startGame = 0;
 
@@ -43,9 +42,16 @@ int main()
             system("cls");
             std::cout << "[" << 1 << "]" << " Activate UNDEAD\n\n";
             std::cout << "[" << 2 << "]" << " Activate GIANTS STRENGTH\n\n";
-            std::cout << "[" << 2 << "]" << " Activate BOTH\n\n";
+            std::cout << "[" << 3 << "]" << " Activate BOTH\n\n";
 
             std::cin >> activateCheats;
+            while (startGame <= 0 || startGame > 3 || std::cin.fail())
+            {
+                GameFunction::ClearInputBuffer();
+                std::cout << "Invalid input, try again : ";
+                std::cin >> startGame;
+            }
+            GameFunction::ClearInputBuffer();
 
             switch (activateCheats)
             {

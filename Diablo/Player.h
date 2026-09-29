@@ -4,15 +4,6 @@ class Enemy;
 class Player
 {
 public:
-	Player(int someStrength, int someAgility, int someEndurance)
-	{
-		myStrength = someStrength;
-		myEndurance = someEndurance;
-		myAgility = someAgility;
-		
-		myCurrentHealth = GetMaxHealth();
-	}
-
 	void TakeDamage(int someDamage);
 	void DoDamage(Enemy& anEnemy) const;
 
@@ -41,16 +32,16 @@ private:
 		Strength = 10,
 		Agility = 6,
 		Endurance = 3,
-		Damage = 10
+		BaseDamage = 10
 	};
 
-	int myStrength = 10;
-	int myAgility = 6;
-	int myEndurance = 3;
+	int myStrength = static_cast<int>(myStats::Strength);
+	int myAgility = static_cast<int>(myStats::Agility);
+	int myEndurance = static_cast<int>(myStats::Endurance);
 
-	int myBaseDamage = static_cast<int>(myStats::Damage);
+	int myBaseDamage = static_cast<int>(myStats::BaseDamage);
 
-	int myCurrentHealth;
+	int myCurrentHealth = GetMaxHealth();
 	int myCurrentRoom = static_cast<int>(myStats::FirstRoom);
 
 	bool myUndead = false;

@@ -6,16 +6,25 @@
 void Player::TakeDamage(int someDamage)
 {
 	int damageTaken = someDamage - (GetDefense() / 2);
-
+	if (myUndead == true)
+	{
+		damageTaken = 0;
+	}
 	std::cout << "Enemy hits you. You lose " << damageTaken << " HP.\n";
 	myCurrentHealth -= (damageTaken);
 }
 
 void Player::DoDamage(Enemy& anEnemy) const
 {
+	int damageDone = GetDamageValue();
+	if (myGiantsStrength == true)
+	{
+		damageDone = 9999;
+	}
 	std::cout << "You slash the enemy with one blow. \n";
-	std::cout << "You hit it for " << GetDamageValue() << " HP. \n";
-	anEnemy.TakeDamage(GetDamageValue());
+	std::cout << "You hit it for " << damageDone << " HP. \n";
+
+	anEnemy.TakeDamage(damageDone);
 }
 
 
