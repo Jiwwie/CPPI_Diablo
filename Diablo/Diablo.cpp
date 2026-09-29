@@ -12,15 +12,23 @@ int main()
     std::vector<Room> rooms;
     GameFunction::CreateRooms(rooms);
     Player player(10, 6, 3);
-    Player cheater(9999, 9999, 9999);
+    //Player cheater(9999, 9999, 9999);
 
     int startGame = 0;
 
-    std::cout << "== Welcome to Diablue ==\n\n";
+    std::cout << "== Welcome to Diablue ==\n";
+    std::cout << "Get to \"Room 46\"!!! \n\n";
     std::cout << "[" << 1 << "]" << " Start game ->\n\n";
     std::cout << "[" << 2 << "]" << " Activate god mode ->\n\n";
 
     std::cin >> startGame;
+    while (startGame <= 0 || startGame > 2 || std::cin.fail())
+    {
+        GameFunction::ClearInputBuffer();
+        std::cout << "Invalid input, try again : ";
+        std::cin >> startGame;
+    }
+    GameFunction::ClearInputBuffer();
 
     switch (startGame)
     {
@@ -31,7 +39,37 @@ int main()
         }
         case 2:
         {
-            GameFunction::StartGame(cheater, rooms);
+            int activateCheats = 0;
+            system("cls");
+            std::cout << "[" << 1 << "]" << " Activate UNDEAD\n\n";
+            std::cout << "[" << 2 << "]" << " Activate GIANTS STRENGTH\n\n";
+            std::cout << "[" << 2 << "]" << " Activate BOTH\n\n";
+
+            std::cin >> activateCheats;
+
+            switch (activateCheats)
+            {
+                case 1:
+                {
+                    player.SetUndead();
+                    break;
+                }
+                case 2:
+                {
+                    player.SetGiantsStrength();
+                    break;
+                }
+                case 3:
+                {
+                    player.SetUndead();
+                    player.SetGiantsStrength();
+                    break;
+                }
+                default:
+                    break;
+            }
+
+            GameFunction::StartGame(player, rooms);
             break;
         }
         default:

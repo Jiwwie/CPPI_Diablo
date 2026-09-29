@@ -31,6 +31,9 @@ public:
 	int GetCurrentRoom() const { return myCurrentRoom; }
 	void SetCurrentRoom(int aRoom) { myCurrentRoom = aRoom; }
 
+	void SetUndead() { myUndead = true; }
+	void SetGiantsStrength() { myGiantsStrength = true; }
+
 private:
 	enum class myStats
 	{
@@ -49,5 +52,8 @@ private:
 
 	int myCurrentHealth;
 	int myCurrentRoom = static_cast<int>(myStats::FirstRoom);
+
+	bool myUndead = false;
+	bool myGiantsStrength = false;
 
 };
