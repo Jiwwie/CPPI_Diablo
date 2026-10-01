@@ -1,13 +1,20 @@
 #pragma once
+#include <vector>
+class Item;
 class Enemy;
 
 class Player
 {
 public:
+	std::vector<Item> myItems;
+
 	void TakeDamage(int someDamage);
 	void DoDamage(Enemy& anEnemy) const;
 
+	void AddItem(Item anItem);
+
 	void ShowStats() const;
+	void ShowInventory() const;
 	
 	bool isAlive() const { return myCurrentHealth > 0; }
 
@@ -16,6 +23,7 @@ public:
 	int GetCurrentHealth() const { return myCurrentHealth; }
 	int GetDefense() const { return myEndurance + myAgility; }
 	int GetInventoryCap() const { return myStrength + myAgility / 3; }
+	int GetItemWeight() const;
 	int GetAgility() const { return myAgility; }
 	int GetStrength() const { return myStrength; }
 

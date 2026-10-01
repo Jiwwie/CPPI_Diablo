@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include "Player.h"
+#include "Item.h"
 #include "Enemy.h"
 #include "Room.h"
 #include "Door.h"
@@ -12,6 +13,19 @@ int main()
     std::vector<Room> rooms;
     GameFunction::CreateRooms(rooms);
     Player player;
+    Item key("Key", 1);
+
+    player.ShowStats();
+    player.ShowInventory();
+    system("pause");
+    system("cls");
+
+    player.AddItem(key);
+    player.ShowStats();
+    player.ShowInventory();
+
+    system("pause");
+
 
     int startGame = 0;
 
