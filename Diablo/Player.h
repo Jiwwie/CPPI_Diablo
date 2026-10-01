@@ -12,6 +12,7 @@ public:
 	void DoDamage(Enemy& anEnemy) const;
 
 	void AddItem(Item anItem);
+	void DropItem(int anItemIndex);
 
 	void ShowStats() const;
 	void ShowInventory() const;

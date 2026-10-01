@@ -26,6 +26,12 @@ int main()
 
     system("pause");
 
+    system("cls");
+    player.DropItem(0);
+    system("pause");
+    player.ShowStats();
+    player.ShowInventory();
+    system("pause");
 
     int startGame = 0;
 

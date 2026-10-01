@@ -13,6 +13,7 @@ public:
 	void ShowStats() const;
 
 	int GetWeight() const { return myWeight; }
+	std::string GetName() const { return myItemName; }
 
 private:
 	std::string myItemName;

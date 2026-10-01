@@ -29,7 +29,23 @@ void Player::DoDamage(Enemy& anEnemy) const
 
 void Player::AddItem(Item anItem)
 {
-	myItems.push_back(anItem);
+	if (GetItemWeight() + anItem.GetWeight() >= GetInventoryCap())
+	{
+		std::cout << "You can't carry this.\n";
+		system("pause");
+	}
+	else
+	{
+		std::cout << anItem.GetName() << " added to inventory.\n";
+		myItems.push_back(anItem);
+		system("pause");
+	}
+}
+
+void Player::DropItem(int anItemIndex)
+{
+	std::cout << "You drop " << myItems[anItemIndex].GetName() << ".\n";
+	myItems.erase(myItems.begin() + anItemIndex);
 }
 
 int Player::GetItemWeight() const
