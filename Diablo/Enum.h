@@ -9,4 +9,14 @@ namespace Enum
         Parlor = 2,
         Room46 = 3
     };
+
+    enum class Stat
+    {
+        Strength,
+        Agility,
+        Endurance,
+        MaxHealth,
+        Defense,
+        InventoryCap
+    };
 }

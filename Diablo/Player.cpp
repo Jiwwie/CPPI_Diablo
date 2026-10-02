@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Enemy.h"
+#include "Enum.h"
 #include "Player.h"
 #include "Item.h"
 
@@ -27,7 +28,7 @@ void Player::DoDamage(Enemy& anEnemy) const
 	anEnemy.TakeDamage(damageDone);
 }
 
-void Player::AddItem(Item anItem)
+void Player::AddItem(Item& anItem)
 {
 	if (GetItemWeight() + anItem.GetWeight() >= GetInventoryCap())
 	{
@@ -38,6 +39,7 @@ void Player::AddItem(Item anItem)
 	{
 		std::cout << anItem.GetName() << " added to inventory.\n";
 		myItems.push_back(anItem);
+		anItem.ApplyStat(this);
 		system("pause");
 	}
 }
@@ -45,8 +47,45 @@ void Player::AddItem(Item anItem)
 void Player::DropItem(int anItemIndex)
 {
 	std::cout << "You drop " << myItems[anItemIndex].GetName() << ".\n";
+	myItems[anItemIndex].RemoveStat(this);
 	myItems.erase(myItems.begin() + anItemIndex);
 }
+
+void Player::UpdateStats(int aStat, int aStatBonus)
+{
+	Enum::Stat stat = static_cast<Enum::Stat>(aStat);
+	switch (stat)
+	{
+		case Enum::Stat::Strength:
+		{
+			myStrength += aStatBonus;
+			break;
+		}
+		case Enum::Stat::Agility:
+		{
+
+		}
+		case Enum::Stat::Endurance:
+		{
+
+		}
+		case Enum::Stat::MaxHealth:
+		{
+
+		}
+		case Enum::Stat::Defense:
+		{
+
+		}
+		case Enum::Stat::InventoryCap:
+		{
+
+		}
+		default:
+			break;
+	}
+}
+
 
 int Player::GetItemWeight() const
 {

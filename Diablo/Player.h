@@ -11,8 +11,9 @@ public:
 	void TakeDamage(int someDamage);
 	void DoDamage(Enemy& anEnemy) const;
 
-	void AddItem(Item anItem);
+	void AddItem(Item& anItem);
 	void DropItem(int anItemIndex);
+	void UpdateStats(int aStat, int aStatBonus);
 
 	void ShowStats() const;
 	void ShowInventory() const;

@@ -13,7 +13,7 @@ int main()
     std::vector<Room> rooms;
     GameFunction::CreateRooms(rooms);
     Player player;
-    Item key("Key", 1);
+    Item key("Key", 1, static_cast<int>(Enum::Stat::Strength), 10);
 
     player.ShowStats();
     player.ShowInventory();
