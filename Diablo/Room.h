@@ -3,6 +3,7 @@
 #include <vector>
 #include "Enemy.h"
 #include "Door.h"
+#include "Item.h"
 
 class Room
 {
@@ -12,9 +13,9 @@ class Room
 		{
 		};
 
-
 		std::vector<Enemy> myEnemies;
 		std::vector<Door*> myDoors;
+		std::vector<Item> myItems;
 		
 		void DisplayEnemies() const;
 		void SpawnEnemies(int anAmount);

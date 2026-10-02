@@ -6,22 +6,27 @@
 #include "Room.h"
 #include "Door.h"
 #include "Enum.h"
+#include "Random.h"
 #include "GameFunction.h"
 
 int main()
 {
     std::vector<Room> rooms;
     GameFunction::CreateRooms(rooms);
+    Random random;
     Player player;
-    Item key("Key", 1, static_cast<int>(Enum::Stat::InventoryCap), 10);
     Item gem("Gem", 1, static_cast<int>(Enum::Stat::MaxHealth), 10);
+    for (int i = 0; i < random.GetRandomInt(2,5); i++)
+    {
+        Item key("Key", 1, static_cast<int>(Enum::Stat::InventoryCap), 10);
+        player.AddItem(key);
+    }
 
     player.ShowStats();
     player.ShowInventory();
     system("pause");
     system("cls");
 
-    player.AddItem(key);
     player.AddItem(gem);
     player.ShowStats();
     player.ShowInventory();

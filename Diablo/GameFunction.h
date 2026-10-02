@@ -1,9 +1,11 @@
 #pragma once
+#include <iostream>
+#include <random>
 #include "Room.h"
 #include "Player.h"
 
 namespace GameFunction
-{
+{      
     inline void ClearInputBuffer()
     {
         std::cin.clear();
