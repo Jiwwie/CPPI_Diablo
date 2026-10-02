@@ -44,6 +44,18 @@ void Player::AddItem(Item& anItem)
 	}
 }
 
+void Player::PromptDrop()
+{
+	int itemIndex;
+	std::cout << "Which item do you want to drop?\n";
+	for (int i = 0; i < myItems.size() ; i++)
+	{
+		std::cout << "[" << i + 1 << "] " << myItems[i].GetName() << "\n";
+	}
+	std::cin >> itemIndex;
+	DropItem(itemIndex);
+}
+
 void Player::DropItem(int anItemIndex)
 {
 	std::cout << "You drop " << myItems[anItemIndex].GetName() << ".\n";
@@ -63,23 +75,32 @@ void Player::UpdateStats(int aStat, int aStatBonus)
 		}
 		case Enum::Stat::Agility:
 		{
-
+			myAgility += aStatBonus;
+			break;
 		}
 		case Enum::Stat::Endurance:
 		{
-
+			myEndurance += aStatBonus;
+			break;
 		}
 		case Enum::Stat::MaxHealth:
 		{
-
+			myHealthBonus += aStatBonus;
+			if (aStatBonus > 0)
+			{
+				myCurrentHealth += aStatBonus;
+			}
+			break;
 		}
 		case Enum::Stat::Defense:
 		{
-
+			myDefenseBonus += aStatBonus;
+			break;
 		}
 		case Enum::Stat::InventoryCap:
 		{
-
+			myInventoryBonus += aStatBonus;
+			break;
 		}
 		default:
 			break;

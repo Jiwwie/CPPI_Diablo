@@ -13,7 +13,8 @@ int main()
     std::vector<Room> rooms;
     GameFunction::CreateRooms(rooms);
     Player player;
-    Item key("Key", 1, static_cast<int>(Enum::Stat::Strength), 10);
+    Item key("Key", 1, static_cast<int>(Enum::Stat::InventoryCap), 10);
+    Item gem("Gem", 1, static_cast<int>(Enum::Stat::MaxHealth), 10);
 
     player.ShowStats();
     player.ShowInventory();
@@ -21,13 +22,14 @@ int main()
     system("cls");
 
     player.AddItem(key);
+    player.AddItem(gem);
     player.ShowStats();
     player.ShowInventory();
 
     system("pause");
 
     system("cls");
-    player.DropItem(0);
+    player.PromptDrop();
     system("pause");
     player.ShowStats();
     player.ShowInventory();
