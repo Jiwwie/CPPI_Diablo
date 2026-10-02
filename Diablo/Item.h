@@ -24,6 +24,7 @@ public:
 	int GetWeight() const { return myWeight; }
 	int GetStatBonus() const { return myStatBonus; }
 	int GetStat() const { return myStat; }
+	std::string GetStatStr() const;
 	std::string GetName() const { return myItemName; }
 
 private:
