@@ -2,6 +2,7 @@
 #include "Door.h"
 #include "Player.h"
 #include "Enum.h"
+#include "Random.h"
 #include "GameFunction.h"
 
 void Room::DisplayEnemies() const
@@ -45,6 +46,15 @@ void Room::KillEnemy(int anEnemy)
 	{
 		myEnemies.erase(myEnemies.begin() + anEnemy);
 	}
+
+    int enemyDrop = myRnd.GetRandomInt(0, 1);
+    if (enemyDrop == 1)
+    {
+        Enum::Item rndItem = static_cast<Enum::Item>(myRnd.GetRandomInt(0, 7));
+        std::cout << "Enemy dropped an item\n";
+        std::cout << static_cast<int>(rndItem);
+    }
+
 }
 
 int Room::GetTarget(int aChoice) const
@@ -62,38 +72,33 @@ int Room::GetTarget(int aChoice) const
 
 void Room::RoomIntro(Player& aPlayer)
 {
-    const int EntranceHall = static_cast<int>(Enum::RoomName::EntranceHall);
-    const int Courtyard = static_cast<int>(Enum::RoomName::Courtyard);
-    const int Parlor = static_cast<int>(Enum::RoomName::Parlor);
-    const int Room46 = static_cast<int>(Enum::RoomName::Room46);
-
-    int currentRoom = aPlayer.GetCurrentRoom();
+    Enum::RoomName currentRoom = static_cast<Enum::RoomName>(aPlayer.GetCurrentRoom());
 
     system("cls");
     switch (currentRoom)
     {
-        case EntranceHall:
+        case Enum::RoomName::EntranceHall:
         {
             std::cout << "You walk into the ENTRANCE HALL...\n";
             std::cout << "The lobby is dark and garish.\n";
             std::cout << "You feel as though your adventure is about to begin...\n\n";
             break;
         }
-        case Courtyard:
+        case Enum::RoomName::Courtyard:
         {
             std::cout << "You walk into the COURTYARD...\n";
             std::cout << "Although you're still inside the mansion,\n";
             std::cout << "This room feels oddly similar to the outside.\n\n";
             break;
         }
-        case Parlor:
+        case Enum::RoomName::Parlor:
         {
             std::cout << "You walk into the PARLOR...\n";
             std::cout << "The room is furnished with couches and armchairs.\n";
             std::cout << "You feel cozy.\n\n";
             break;
         }
-        case Room46:
+        case Enum::RoomName::Room46:
         {
             std::cout << "You walk into ROOM 46...\n";
             std::cout << "At last, your adventure through the mansion comes to an end.\n\n";
@@ -102,7 +107,6 @@ void Room::RoomIntro(Player& aPlayer)
         default:
             break;
     }
-
     system("pause");
 }
 

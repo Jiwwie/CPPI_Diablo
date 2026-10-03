@@ -4,6 +4,7 @@
 #include "Enemy.h"
 #include "Door.h"
 #include "Item.h"
+#include "Random.h"
 
 class Room
 {
@@ -13,6 +14,7 @@ class Room
 		{
 		};
 
+		Random myRnd;
 		std::vector<Enemy> myEnemies;
 		std::vector<Door*> myDoors;
 		std::vector<Item> myItems;
