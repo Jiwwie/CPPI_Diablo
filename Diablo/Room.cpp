@@ -3,6 +3,7 @@
 #include "Player.h"
 #include "Enum.h"
 #include "Random.h"
+#include "Consts.h"
 #include "GameFunction.h"
 
 void Room::DisplayEnemies() const
@@ -50,11 +51,71 @@ void Room::KillEnemy(int anEnemy)
     int enemyDrop = myRnd.GetRandomInt(0, 1);
     if (enemyDrop == 1)
     {
-        Enum::Item rndItem = static_cast<Enum::Item>(myRnd.GetRandomInt(0, 7));
+        int rndItem = (myRnd.GetRandomInt(0, 7));
         std::cout << "Enemy dropped an item\n";
-        std::cout << static_cast<int>(rndItem);
+        SpawnEnemyDrop(rndItem);
+        std::cout << rndItem;
     }
 
+}
+
+void Room::SpawnEnemyDrop(int anItemIndex)
+{
+    Enum::Item item = static_cast<Enum::Item>(anItemIndex);
+
+        switch (item)
+        {
+            case Enum::Item::MoonPendant:
+            {
+                Item pendant("Moon Pendant", Const::WEIGHT_MEDIUM, static_cast<int>(Enum::Stat::MaxHealth), 25);
+                myItems.push_back(pendant);
+                break;
+            }
+            case Enum::Item::RunningShoes:
+            {
+                Item shoes("Running Shoes", Const::WEIGHT_MEDIUM, static_cast<int>(Enum::Stat::Agility), 2);
+                myItems.push_back(shoes);
+                break;
+            }
+            case Enum::Item::SleepingMask:
+            {
+                Item mask("Sleeping Mask", Const::WEIGHT_LIGHT, static_cast<int>(Enum::Stat::Defense), 10);
+                myItems.push_back(mask);
+                break;
+            }
+            case Enum::Item::BrokenLever:
+            {
+                Item lever("Broken Lever", Const::WEIGHT_HEAVY, static_cast<int>(Enum::Stat::Strength), 3);
+                myItems.push_back(lever);
+                break;
+            }
+            case Enum::Item::MagnifyingGlass:
+            {
+                Item glass("Magnifying Glass", Const::WEIGHT_MEDIUM, static_cast<int>(Enum::Stat::Endurance), 1);
+                myItems.push_back(glass);
+                break;
+            }
+            case Enum::Item::LuckyRabbitsFoot:
+            {
+                Item foot("Lucky Rabbit's Foot", Const::WEIGHT_LIGHT, static_cast<int>(Enum::Stat::Strength), 1);
+                myItems.push_back(foot);
+                break;
+            }
+            case Enum::Item::CrownOfTheBlueprints:
+            {
+                Item crown("Crown of the Blueprints", Const::WEIGHT_VERY_HEAVY, static_cast<int>(Enum::Stat::Strength), 5);
+                myItems.push_back(crown);
+                break;
+            }
+            case Enum::Item::KnightsShield:
+            {
+                Item shield("Knight's Shield", Const::WEIGHT_VERY_HEAVY, static_cast<int>(Enum::Stat::Endurance), 5);
+                myItems.push_back(shield);
+                break;
+            }
+            default:
+                break;
+    }
 }
 
 int Room::GetTarget(int aChoice) const
@@ -174,7 +235,11 @@ void Room::PostBattle(Player& aPlayer) const
             case 2:
             {
                 system("cls");
-                std::cout << "You looked for loot but the room was empty\n";
+                for (int i = 0; i < myItems.size(); i++)
+                {
+                    std::cout << "[" << i + 1 << "] ";
+                    myItems[i].ShowStats();
+                }
                 system("pause");
                 break;
             }

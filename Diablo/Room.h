@@ -24,7 +24,7 @@ class Room
 		void SetDoors(Door* aDoor);
 		
 		void KillEnemy(int anEnemy);
-
+		void SpawnEnemyDrop(int anItemIndex);
 		int GetTarget(int aChoice) const;
 
 		static void RoomIntro(Player& aPlayer);
