@@ -11,9 +11,9 @@ public:
 	void TakeDamage(int someDamage);
 	void DoDamage(Enemy& anEnemy) const;
 
-	void AddItem(Item& anItem);
+	void AddItem(int anIndex, Item& anItem, std::vector<Item>& someItems);
 	void PromptDrop();
-	void DropItem(int anItemIndex);
+	void DropItem(int anItemIndex, std::vector<Item>& someItems);
 	void UpdateStats(int aStat, int aStatBonus);
 
 	void ShowStats() const;

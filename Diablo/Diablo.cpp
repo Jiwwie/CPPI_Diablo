@@ -15,31 +15,7 @@ int main()
     GameFunction::CreateRooms(rooms);
     Random random;
     Player player;
-    Item gem("Gem", 1, static_cast<int>(Enum::Stat::MaxHealth), 10);
-    for (int i = 0; i < random.GetRandomInt(2,5); i++)
-    {
-        Item key("Key", 1, static_cast<int>(Enum::Stat::Strength), 10);
-        player.AddItem(key);
-    }
-
-    player.ShowStats();
-    player.ShowInventory();
-    system("pause");
-    system("cls");
-
-    player.AddItem(gem);
-    player.ShowStats();
-    player.ShowInventory();
-
-    system("pause");
-
-    system("cls");
-    player.PromptDrop();
-    system("pause");
-    player.ShowStats();
-    player.ShowInventory();
-    system("pause");
-
+    
     int startGame = 0;
 
     std::cout << "== Welcome to Diablue ==\n";

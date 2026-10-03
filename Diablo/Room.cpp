@@ -229,6 +229,7 @@ void Room::PostBattle(Player& aPlayer)
             case 1:
             {
                 aPlayer.ShowStats();
+                aPlayer.ShowInventory();
                 system("pause");
                 break;
             }
@@ -259,8 +260,7 @@ void Room::PostBattle(Player& aPlayer)
                     {
                         std::cout << "What will you pick up?\n";
                         std::cin >> choice;
-                        aPlayer.AddItem(myItems[choice - 1]);
-                        myItems.erase(myItems.begin() + (choice - 1));
+                        aPlayer.AddItem(choice-1, myItems[choice - 1], myItems);
                     }
 
                     system("pause");

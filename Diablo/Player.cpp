@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 #include "Enemy.h"
 #include "Enum.h"
 #include "Player.h"
@@ -29,19 +30,18 @@ void Player::DoDamage(Enemy& anEnemy) const
 	anEnemy.TakeDamage(damageDone);
 }
 
-void Player::AddItem(Item& anItem)
+void Player::AddItem(int anIndex, Item& anItem, std::vector<Item>& someItems)
 {
 	if (GetItemWeight() + anItem.GetWeight() >= GetInventoryCap())
 	{
 		std::cout << "You can't carry this.\n";
-		system("pause");
 	}
 	else
 	{
 		std::cout << anItem.GetName() << " added to inventory.\n";
 		myItems.push_back(anItem);
 		anItem.ApplyStat(this);
-		system("pause");
+		someItems.erase(someItems.begin() + anIndex);
 	}
 }
 
@@ -61,13 +61,14 @@ void Player::PromptDrop()
 		std::cin >> itemIndex;
 	}
 	GameFunction::ClearInputBuffer();
-	DropItem(itemIndex-1);
+	DropItem(itemIndex-1, myItems);
 }
 
-void Player::DropItem(int anItemIndex)
+void Player::DropItem(int anItemIndex, std::vector<Item>& someItems)
 {
 	std::cout << "You drop " << myItems[anItemIndex].GetName() << ".\n";
 	myItems[anItemIndex].RemoveStat(this);
+	someItems.push_back(myItems[anItemIndex]);
 	myItems.erase(myItems.begin() + anItemIndex);
 }
 
