@@ -71,7 +71,7 @@ void Player::PromptDrop(std::vector<Item>& someItems)
 	}
 	else
 	{
-		std::cout << "Nothing to drop.\n";
+		std::cout << "Nothing to drop.\n\n";
 	}
 }
 
@@ -184,14 +184,13 @@ void Player::ShowInventory(std::vector<Item>& someItems)
 					myItems[i].ShowStats();
 					std::cout << '\n';
 				}
-				while (input != 3)
+				while (input != 2)
 				{
 
 					std::cout << "[1] Drop something\n";
-					std::cout << "[2] Use item\n";
-					std::cout << "[3] Continue\n";
+					std::cout << "[2] Continue\n";
 					std::cin >> input;
-					while (input <= 0 || input > 3 || std::cin.fail())
+					while (input <= 0 || input > 2 || std::cin.fail())
 					{
 						GameFunction::ClearInputBuffer();
 						std::cout << "Invalid input, try again : ";
@@ -208,10 +207,6 @@ void Player::ShowInventory(std::vector<Item>& someItems)
 							break;
 						}
 						case 2:
-						{
-							break;
-						}
-						case 3:
 						{
 							break;
 						}

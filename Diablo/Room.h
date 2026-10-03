@@ -4,6 +4,7 @@
 #include "Enemy.h"
 #include "Door.h"
 #include "Item.h"
+#include "Chest.h"
 #include "Random.h"
 
 class Room
@@ -18,9 +19,11 @@ class Room
 		std::vector<Enemy> myEnemies;
 		std::vector<Door*> myDoors;
 		std::vector<Item> myItems;
+		std::vector<Chest> myChests;
 		
 		void DisplayEnemies() const;
 		void SpawnEnemies(int anAmount);
+		void SpawnChests(int anAmount);
 		void SetDoors(Door* aDoor);
 		
 		void KillEnemy(int anEnemy);

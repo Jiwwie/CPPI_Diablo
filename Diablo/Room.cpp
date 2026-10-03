@@ -1,5 +1,6 @@
 #include "Room.h"
 #include "Door.h"
+#include "Chest.h"
 #include "Player.h"
 #include "Enum.h"
 #include "Random.h"
@@ -23,6 +24,16 @@ void Room::SpawnEnemies(int anAmount)
         Random rnd;
 		Enemy enemy(rnd.GetRandomInt(Const::MIN_ENEMY_HP, Const::MAX_ENEMY_HP), rnd.GetRandomInt(Const::MIN_ENEMY_DMG, Const::MAX_ENEMY_DMG));
 		myEnemies.push_back(enemy);
+	}
+}
+
+void Room::SpawnChests(int anAmount)
+{
+	for (int i = 0; i < anAmount; i++)
+	{
+        Random rnd;
+		Chest chest(rnd.GetRandomInt(1, 3), 0);
+		myChests.push_back(chest);
 	}
 }
 
@@ -219,6 +230,7 @@ void Room::PostBattle(Player& aPlayer)
         {
             case 1:
             {
+                system("cls");
                 aPlayer.ShowStats();
                 aPlayer.ShowInventory(myItems);
                 system("pause");
@@ -227,20 +239,20 @@ void Room::PostBattle(Player& aPlayer)
             case 2:
             {
                 choice = 0;
-                while (choice != 2)
+                while (choice != 3)
                 {
                     system("cls");
                     std::cout << "Items on floor:\n\n";
                     for (int i = 0; i < myItems.size(); i++)
                     {
-                        std::cout << "[" << i + 1 << "] ";
                         myItems[i].ShowStats();
                     }
                     std::cout << "\n\nWhat do you want to do?\n";
                     std::cout << "[1] Pick something up\n";
-                    std::cout << "[2] Continue\n";
+                    std::cout << "[2] Open chests: currently [" << myChests.size() << "] chests in room.\n";
+                    std::cout << "[3] Continue\n";
                     std::cin >> choice;
-                    while (choice <= 0 || choice > 2 || std::cin.fail())
+                    while (choice <= 0 || choice > 3 || std::cin.fail())
                     {
                         GameFunction::ClearInputBuffer();
                         std::cout << "Invalid input: ";

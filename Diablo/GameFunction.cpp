@@ -1,5 +1,6 @@
 #include "GameFunction.h"
 #include "Room.h"
+#include "Chest.h"
 #include "Enum.h"
 #include "Player.h"
 
@@ -26,6 +27,7 @@ void GameFunction::CreateRooms(std::vector<Room>& someRooms)
 
     //Entrance hall
     someRooms[0].SpawnEnemies(1);
+    someRooms[0].SpawnChests(1);
     someRooms[0].SetDoors(&door1);
 
     //Courtyard
