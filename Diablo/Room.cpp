@@ -256,13 +256,24 @@ void Room::PostBattle(Player& aPlayer)
                     }
                     GameFunction::ClearInputBuffer();
 
-                    if (choice == 1)
+                    if (choice == 1 && myItems.size() > 0)
                     {
                         std::cout << "What will you pick up?\n";
                         std::cin >> choice;
+                        while (choice <= 0 || choice > myItems.size() || std::cin.fail())
+                        {
+                            GameFunction::ClearInputBuffer();
+                            std::cout << "Invalid input: ";
+                            std::cin >> choice;
+                        }
+                        GameFunction::ClearInputBuffer();
                         aPlayer.AddItem(choice-1, myItems[choice - 1], myItems);
+                        choice = 0;
                     }
-
+                    else if (choice == 1 && myItems.size() <= 0)
+                    {
+                        std::cout << "There's nothing to pick up.\n";
+                    }
                     system("pause");
                 }
                 break;

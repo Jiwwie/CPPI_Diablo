@@ -116,7 +116,6 @@ void Player::UpdateStats(int aStat, int aStatBonus)
 	}
 }
 
-
 int Player::GetItemWeight() const
 {
 	int weight = 0;
