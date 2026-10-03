@@ -17,7 +17,7 @@ public:
 	void UpdateStats(int aStat, int aStatBonus);
 
 	void ShowStats() const;
-	void ShowInventory() const;
+	void ShowInventory();
 	
 	bool isAlive() const { return myCurrentHealth > 0; }
 

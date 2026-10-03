@@ -3,6 +3,7 @@
 #include "Enum.h"
 #include "Player.h"
 #include "Item.h"
+#include "GameFunction.h"
 
 void Player::TakeDamage(int someDamage)
 {
@@ -53,7 +54,14 @@ void Player::PromptDrop()
 		std::cout << "[" << i + 1 << "] " << myItems[i].GetName() << "\n";
 	}
 	std::cin >> itemIndex;
-	DropItem(itemIndex);
+	while (itemIndex <= 0 || itemIndex > myItems.size() || std::cin.fail())
+	{
+		GameFunction::ClearInputBuffer();
+		std::cout << "You can't drop that: ";
+		std::cin >> itemIndex;
+	}
+	GameFunction::ClearInputBuffer();
+	DropItem(itemIndex-1);
 }
 
 void Player::DropItem(int anItemIndex)
@@ -132,23 +140,85 @@ void Player::ShowStats() const
 	std::cout << "\n\n";
 }
 
-void Player::ShowInventory() const
+void Player::ShowInventory()
 {
-	std::cout << "INVENTORY: ";
+	int input = 0;
+	std::cout << "[1] Show inventory\n";
+	std::cout << "[2] Continue\n";
+	std::cin >> input;
+	while (input <= 0 || input > 2 || std::cin.fail())
+	{
+		GameFunction::ClearInputBuffer();
+		std::cout << "Invalid input, try again : ";
+		std::cin >> input;
+	}
+	GameFunction::ClearInputBuffer();
 
-	if (myItems.size() <= 0)
+	switch (input)
 	{
-		std::cout << "\nEmpty.\n";
-	}
-	else
-	{
-		std::cout << "\n";
-		for (int i = 0; i < myItems.size(); i++)
+		case 1:
 		{
-			std::cout << "* ";
-			myItems[i].ShowStats();
-			std::cout << '\n';
+			std::cout << "INVENTORY: ";
+
+			if (myItems.size() <= 0)
+			{
+				std::cout << "\nEmpty.\n";
+			}
+			else
+			{
+				std::cout << "\n";
+				for (int i = 0; i < myItems.size(); i++)
+				{
+					std::cout << "* ";
+					myItems[i].ShowStats();
+					std::cout << '\n';
+				}
+				while (input != 3)
+				{
+
+					std::cout << "[1] Drop something\n";
+					std::cout << "[2] Use item\n";
+					std::cout << "[3] Continue\n";
+					std::cin >> input;
+					while (input <= 0 || input > 3 || std::cin.fail())
+					{
+						GameFunction::ClearInputBuffer();
+						std::cout << "Invalid input, try again : ";
+						std::cin >> input;
+					}
+					GameFunction::ClearInputBuffer();
+
+					switch (input)
+					{
+						case 1:
+						{
+							system("cls");
+							PromptDrop();
+							break;
+						}
+						case 2:
+						{
+							break;
+						}
+						case 3:
+						{
+							break;
+						}
+						default:
+							break;
+					}
+				}
+			}
+
+			break;
 		}
+		case 2:
+		{
+			break;
+		}
+		default:
+			break;
 	}
+	
 
 }
