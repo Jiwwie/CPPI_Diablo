@@ -24,12 +24,9 @@ void GameFunction::CreateRooms(std::vector<Room>& someRooms)
     static Door door2(Courtyard, Parlor, false);
     static Door door3(Parlor, Room46, true);
 
-    //static Door cheatDoor(EntranceHall, Room46, true);
-
     //Entrance hall
     someRooms[0].SpawnEnemies(1);
     someRooms[0].SetDoors(&door1);
-    //someRooms[0].SetDoors(&cheatDoor);
 
     //Courtyard
     someRooms[1].SpawnEnemies(3);

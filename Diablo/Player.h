@@ -12,12 +12,12 @@ public:
 	void DoDamage(Enemy& anEnemy) const;
 
 	void AddItem(int anIndex, Item& anItem, std::vector<Item>& someItems);
-	void PromptDrop();
+	void PromptDrop(std::vector<Item>& someItems);
 	void DropItem(int anItemIndex, std::vector<Item>& someItems);
 	void UpdateStats(int aStat, int aStatBonus);
 
 	void ShowStats() const;
-	void ShowInventory();
+	void ShowInventory(std::vector<Item>& someItems);
 	
 	bool isAlive() const { return myCurrentHealth > 0; }
 

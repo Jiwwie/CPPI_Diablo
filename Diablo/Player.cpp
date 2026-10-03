@@ -9,6 +9,10 @@
 void Player::TakeDamage(int someDamage)
 {
 	int damageTaken = someDamage - (GetDefense() / 2);
+	if (damageTaken <= 0)
+	{
+		damageTaken = 1;
+	}
 	if (myUndead == true)
 	{
 		damageTaken = 0;
@@ -45,30 +49,37 @@ void Player::AddItem(int anIndex, Item& anItem, std::vector<Item>& someItems)
 	}
 }
 
-void Player::PromptDrop()
+void Player::PromptDrop(std::vector<Item>& someItems)
 {
 	int itemIndex;
-	std::cout << "Which item do you want to drop?\n";
-	for (int i = 0; i < myItems.size() ; i++)
+	if (myItems.size() > 0)
 	{
-		std::cout << "[" << i + 1 << "] " << myItems[i].GetName() << "\n";
-	}
-	std::cin >> itemIndex;
-	while (itemIndex <= 0 || itemIndex > myItems.size() || std::cin.fail())
-	{
-		GameFunction::ClearInputBuffer();
-		std::cout << "You can't drop that: ";
+		std::cout << "Which item do you want to drop?\n";
+		for (int i = 0; i < myItems.size(); i++)
+		{
+			std::cout << "[" << i + 1 << "] " << myItems[i].GetName() << "\n";
+		}
 		std::cin >> itemIndex;
+		while (itemIndex <= 0 || itemIndex > myItems.size() || std::cin.fail())
+		{
+			GameFunction::ClearInputBuffer();
+			std::cout << "You can't drop that: ";
+			std::cin >> itemIndex;
+		}
+		GameFunction::ClearInputBuffer();
+		DropItem(itemIndex - 1, someItems);
 	}
-	GameFunction::ClearInputBuffer();
-	DropItem(itemIndex-1, myItems);
+	else
+	{
+		std::cout << "Nothing to drop.\n";
+	}
 }
 
 void Player::DropItem(int anItemIndex, std::vector<Item>& someItems)
 {
 	std::cout << "You drop " << myItems[anItemIndex].GetName() << ".\n";
-	myItems[anItemIndex].RemoveStat(this);
 	someItems.push_back(myItems[anItemIndex]);
+	myItems[anItemIndex].RemoveStat(this);
 	myItems.erase(myItems.begin() + anItemIndex);
 }
 
@@ -140,7 +151,7 @@ void Player::ShowStats() const
 	std::cout << "\n\n";
 }
 
-void Player::ShowInventory()
+void Player::ShowInventory(std::vector<Item>& someItems)
 {
 	int input = 0;
 	std::cout << "[1] Show inventory\n";
@@ -193,7 +204,7 @@ void Player::ShowInventory()
 						case 1:
 						{
 							system("cls");
-							PromptDrop();
+							PromptDrop(someItems);
 							break;
 						}
 						case 2:

@@ -18,19 +18,10 @@ void Room::DisplayEnemies() const
 
 void Room::SpawnEnemies(int anAmount)
 {
-    struct EnemyStats
-    {
-        int baseHealth = 25;
-        int highHealth = 75;
-        int baseDamage = 10;
-        int highDamage = 20;
-    };
-
-    EnemyStats stat;
-
 	for (int enemyCount = 0; enemyCount < anAmount; enemyCount++)
 	{
-		Enemy enemy(stat.baseHealth, stat.baseDamage);
+        Random rnd;
+		Enemy enemy(rnd.GetRandomInt(Const::MIN_ENEMY_HP, Const::MAX_ENEMY_HP), rnd.GetRandomInt(Const::MIN_ENEMY_DMG, Const::MAX_ENEMY_DMG));
 		myEnemies.push_back(enemy);
 	}
 }
@@ -40,22 +31,22 @@ void Room::SetDoors(Door* aDoor)
     myDoors.push_back(aDoor);
 }
 
-
 void Room::KillEnemy(int anEnemy)
 {
 	if (!myEnemies[anEnemy].isAlive())
 	{
 		myEnemies.erase(myEnemies.begin() + anEnemy);
+
+        int enemyDrop = myRnd.GetRandomInt(0, 1);
+        if (enemyDrop == 1)
+        {
+            int rndItem = (myRnd.GetRandomInt(0, 7));
+            std::cout << "Enemy dropped an item\n";
+            SpawnEnemyDrop(rndItem);
+            std::cout << rndItem;
+        }
 	}
 
-    int enemyDrop = myRnd.GetRandomInt(0, 1);
-    if (enemyDrop == 1)
-    {
-        int rndItem = (myRnd.GetRandomInt(0, 7));
-        std::cout << "Enemy dropped an item\n";
-        SpawnEnemyDrop(rndItem);
-        std::cout << rndItem;
-    }
 
 }
 
@@ -229,7 +220,7 @@ void Room::PostBattle(Player& aPlayer)
             case 1:
             {
                 aPlayer.ShowStats();
-                aPlayer.ShowInventory();
+                aPlayer.ShowInventory(myItems);
                 system("pause");
                 break;
             }
@@ -239,12 +230,13 @@ void Room::PostBattle(Player& aPlayer)
                 while (choice != 2)
                 {
                     system("cls");
+                    std::cout << "Items on floor:\n\n";
                     for (int i = 0; i < myItems.size(); i++)
                     {
                         std::cout << "[" << i + 1 << "] ";
                         myItems[i].ShowStats();
                     }
-                    std::cout << "What do you want to do?\n";
+                    std::cout << "\n\nWhat do you want to do?\n";
                     std::cout << "[1] Pick something up\n";
                     std::cout << "[2] Continue\n";
                     std::cin >> choice;
@@ -258,7 +250,14 @@ void Room::PostBattle(Player& aPlayer)
 
                     if (choice == 1 && myItems.size() > 0)
                     {
-                        std::cout << "What will you pick up?\n";
+                        system("cls");
+                        std::cout << "Items on floor:\n\n";
+                        for (int i = 0; i < myItems.size(); i++)
+                        {
+                            std::cout << "[" << i + 1 << "] ";
+                            myItems[i].ShowStats();
+                        }
+                        std::cout << "\nWhat will you pick up?\n";
                         std::cin >> choice;
                         while (choice <= 0 || choice > myItems.size() || std::cin.fail())
                         {
