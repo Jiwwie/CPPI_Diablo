@@ -198,7 +198,7 @@ void Room::Battle(Player& aPlayer)
 
 }
 
-void Room::PostBattle(Player& aPlayer) const
+void Room::PostBattle(Player& aPlayer)
 {
     int choice = 0;
     while (choice != 3)
@@ -234,13 +234,37 @@ void Room::PostBattle(Player& aPlayer) const
             }
             case 2:
             {
-                system("cls");
-                for (int i = 0; i < myItems.size(); i++)
+                choice = 0;
+                while (choice != 2)
                 {
-                    std::cout << "[" << i + 1 << "] ";
-                    myItems[i].ShowStats();
+                    system("cls");
+                    for (int i = 0; i < myItems.size(); i++)
+                    {
+                        std::cout << "[" << i + 1 << "] ";
+                        myItems[i].ShowStats();
+                    }
+                    std::cout << "What do you want to do?\n";
+                    std::cout << "[1] Pick something up\n";
+                    std::cout << "[2] Continue\n";
+                    std::cin >> choice;
+                    while (choice <= 0 || choice > 2 || std::cin.fail())
+                    {
+                        GameFunction::ClearInputBuffer();
+                        std::cout << "Invalid input: ";
+                        std::cin >> choice;
+                    }
+                    GameFunction::ClearInputBuffer();
+
+                    if (choice == 1)
+                    {
+                        std::cout << "What will you pick up?\n";
+                        std::cin >> choice;
+                        aPlayer.AddItem(myItems[choice - 1]);
+                        myItems.erase(myItems.begin() + (choice - 1));
+                    }
+
+                    system("pause");
                 }
-                system("pause");
                 break;
             }
             case 3:

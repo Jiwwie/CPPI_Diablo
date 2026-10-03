@@ -29,7 +29,7 @@ class Room
 
 		static void RoomIntro(Player& aPlayer);
 		void Battle(Player& aPlayer);
-		void PostBattle(Player& aPlayer) const;
+		void PostBattle(Player& aPlayer);
 		void SelectDoor(Player& aPlayer, std::vector<Room>& someRooms);
 	 
 		void EnterRoom(Player& aPlayer, std::vector<Room>& someRooms);
