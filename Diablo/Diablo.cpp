@@ -18,7 +18,7 @@ int main()
     Item gem("Gem", 1, static_cast<int>(Enum::Stat::MaxHealth), 10);
     for (int i = 0; i < random.GetRandomInt(2,5); i++)
     {
-        Item key("Key", 1, static_cast<int>(Enum::Stat::InventoryCap), 10);
+        Item key("Key", 1, static_cast<int>(Enum::Stat::Strength), 10);
         player.AddItem(key);
     }
 

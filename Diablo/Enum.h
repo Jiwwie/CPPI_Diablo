@@ -19,4 +19,16 @@ namespace Enum
         Defense,
         InventoryCap
     };
+
+    enum class Item
+    {
+        MoonPendant,
+        RunningShoes,
+        SleepingMask,
+        BrokenLever,
+        MagnifyingGlass,
+        LuckyRabbitsFoot,
+        CrownOfTheBlueprints,
+        KnightsShield
+    };
 }
