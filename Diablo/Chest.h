@@ -9,10 +9,12 @@ public:
 		myItemAmount(anItemAmount),
 		mySpellAmount(aSpellAmount)
 	{
+		RandomizeChestItems();
 	};
 
 	std::vector<Item> myItems;
 
+	void OpenChest(std::vector<Item>& someItems);
 	void RandomizeChestItems();
 	void SpawnChestItems(int anItemIndex);
 

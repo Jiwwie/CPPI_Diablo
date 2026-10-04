@@ -32,7 +32,7 @@ void Room::SpawnChests(int anAmount)
 	for (int i = 0; i < anAmount; i++)
 	{
         Random rnd;
-		Chest chest(rnd.GetRandomInt(0, 2), 0);
+		Chest chest(rnd.GetRandomInt(1, 2), 0);
 		myChests.push_back(chest);
 	}
 }
@@ -245,6 +245,7 @@ void Room::PostBattle(Player& aPlayer)
                     std::cout << "Items on floor:\n\n";
                     for (int i = 0; i < myItems.size(); i++)
                     {
+                        std::cout << "* ";
                         myItems[i].ShowStats();
                     }
                     std::cout << "\n\nWhat do you want to do?\n";
@@ -278,12 +279,23 @@ void Room::PostBattle(Player& aPlayer)
                             std::cin >> choice;
                         }
                         GameFunction::ClearInputBuffer();
-                        aPlayer.AddItem(choice-1, myItems[choice - 1], myItems);
+                        choice = choice - 1;
+                        aPlayer.AddItem(choice, myItems[choice], myItems);
                         choice = 0;
                     }
                     else if (choice == 1 && myItems.size() <= 0)
                     {
                         std::cout << "There's nothing to pick up.\n";
+                    }
+
+                    if (choice == 2 && myChests.size() > 0)
+                    {
+                        myChests[0].OpenChest(myItems);
+                        myChests.erase(myChests.begin());
+                    }
+                    else if (choice == 2 && myChests.size() <= 0)
+                    {
+                        std::cout << "There are no chests to open.\n";
                     }
                     system("pause");
                 }

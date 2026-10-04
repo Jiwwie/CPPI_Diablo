@@ -2,6 +2,27 @@
 #include "Random.h"
 #include "Consts.h"
 #include "Enum.h"
+#include "Item.h"
+
+
+void Chest::OpenChest(std::vector<Item>& someItems)
+{
+    std::cout << "You open the chest. It contained: \n\n";
+    if (myItems.size() <= 0)
+    {
+        std::cout << "Nothing..\n";
+    }
+    else
+    {
+        for (int i = 0; i < myItems.size(); i++)
+        {
+            someItems.push_back(myItems[i]);
+            myItems[i].ShowStats();
+            std::cout << '\n';
+        }
+        std::cout << "[All items dropped on floor]\n";
+    }
+}
 
 void Chest::RandomizeChestItems()
 {
@@ -10,7 +31,6 @@ void Chest::RandomizeChestItems()
     {
         SpawnChestItems(rndItem);
     }
-
 }
 
 void Chest::SpawnChestItems(int anItemIndex)
