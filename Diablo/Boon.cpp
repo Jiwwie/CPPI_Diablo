@@ -18,20 +18,20 @@ void Boon::ApplyBoon(Player* aPlayer, int boonIndex) const
 		}
 		case Enum::Boon::ClubSandwich:
 		{
-			aPlayer->HealPlayer(20);
+			aPlayer->HealPlayer(25);
 			aPlayer->ModifyStrength(2);
 			break;
 		}
 		case Enum::Boon::WoodFriedPizza:
 		{
-			aPlayer->HealPlayer(30);
-			aPlayer->ModifyStrength(5);
+			aPlayer->HealPlayer(40);
+			aPlayer->ModifyStrength(10);
 			break;
 		}
 		case Enum::Boon::LunchBox:
 		{
-			aPlayer->HealPlayer(10);
-			aPlayer->ModifyStrength(2);
+			aPlayer->HealPlayer(15);
+			aPlayer->ModifyStrength(3);
 			break;
 		}
 		default:
