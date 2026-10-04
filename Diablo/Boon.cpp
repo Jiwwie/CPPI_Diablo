@@ -71,15 +71,52 @@ void Boon::RemoveBoon(Player* aPlayer) const
 		break;
 	}
 }
-
-void Boon::ShowEffect()
+ 
+void Boon::ShowEffect() const
 {
 	if (myDuration == 0)
 	{
-		std::cout << "BOON: " << myBoonName << " || Duration: Instant" << '\n';
+		std::cout << "BOON: " << myBoonName << " || Effect: " << GetEffectStr() << " || Duration: Instant" << '\n';
 	}
 	else
 	{
-		std::cout << "BOON: " << myBoonName << " || Duration: " << myDuration << '\n';
+		std::cout << "BOON: " << myBoonName << " || Effect: " << GetEffectStr() << " || Duration: " << myDuration << '\n';
+	}
+}
+
+std::string Boon::GetEffectStr() const
+{
+	Enum::Boon boon = static_cast<Enum::Boon>(myEffect);
+
+	switch (boon)
+	{
+		case Enum::Boon::Apple:
+		{
+			return "Heals 10 HP";
+			break;
+		}
+		case Enum::Boon::Banana:
+		{
+			return "Heals 12 HP";
+			break;
+		}
+		case Enum::Boon::ClubSandwich:
+		{
+			return "Heals 25 HP, +2 Strength";
+			break;
+		}
+		case Enum::Boon::WoodFriedPizza:
+		{
+			return "Heals 40 HP, +10 Strength";
+			break;
+		}
+		case Enum::Boon::LunchBox:
+		{
+			return "Heals 15 HP, +3 Strength";
+			break;
+		}
+		default:                         
+			return "???";
+			break;
 	}
 }
