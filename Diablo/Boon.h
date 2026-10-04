@@ -12,7 +12,7 @@ public:
 	{
 	};
 
-	//void ApplyBoon(Player* aPlayer) const;
+	void ApplyBoon(Player* aPlayer, int boonIndex) const;
 	//void RemoveBoon(Player* aPlayer) const;
 	void ShowEffect();
 

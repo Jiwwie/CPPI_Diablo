@@ -24,6 +24,8 @@ public:
 	
 	bool isAlive() const { return myCurrentHealth > 0; }
 
+	void HealPlayer(int someHealth) { myCurrentHealth = myCurrentHealth + someHealth; }
+
 	int GetDamageValue() const { return myBaseDamage + myStrength / 2; }
 	int GetMaxHealth() const { return (myEndurance * 4 + myStrength * 3 + myAgility * 3) + myHealthBonus; }
 	int GetCurrentHealth() const { return myCurrentHealth; }

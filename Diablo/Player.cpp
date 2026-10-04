@@ -54,7 +54,7 @@ void Player::AddBoon(int anIndex, Boon& aBoon, std::vector<Boon>& someBoons)
 {
 	std::cout << "You ate " << aBoon.GetName() << "\n";
 	myBoons.push_back(aBoon);
-	//aBoon.ApplyStat(this);
+	aBoon.ApplyBoon(this, anIndex);
 	someBoons.erase(someBoons.begin() + anIndex);
 }
 
@@ -135,6 +135,7 @@ void Player::UpdateStats(int aStat, int aStatBonus)
 			break;
 	}
 }
+
 
 int Player::GetItemWeight() const
 {
