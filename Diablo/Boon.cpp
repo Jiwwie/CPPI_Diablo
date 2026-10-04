@@ -59,12 +59,12 @@ void Boon::RemoveBoon(Player* aPlayer, int boonIndex) const
 	}
 	case Enum::Boon::WoodFriedPizza:
 	{
-		aPlayer->ModifyStrength(-5);
+		aPlayer->ModifyStrength(-10);
 		break;
 	}
 	case Enum::Boon::LunchBox:
 	{
-		aPlayer->ModifyStrength(-2);
+		aPlayer->ModifyStrength(-3);
 		break;
 	}
 	default:
