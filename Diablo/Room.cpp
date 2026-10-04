@@ -54,7 +54,6 @@ void Room::KillEnemy(int anEnemy)
             int rndItem = (myRnd.GetRandomInt(0, 7));
             std::cout << "Enemy dropped an item\n";
             SpawnEnemyDrop(rndItem);
-            std::cout << rndItem;
         }
 	}
 
@@ -389,7 +388,7 @@ void Room::EnterRoom(Player& aPlayer, std::vector<Room>& someRooms)
     Battle(aPlayer);
     if (aPlayer.isAlive())
     {
-        for (int i = 0; i < aPlayer.myBoons.size(); i++)
+        for (int i = 0; i < aPlayer.myBoons.size();)
         {
             if (aPlayer.myBoons[i].GetDuration() > 0)
             {
@@ -397,8 +396,12 @@ void Room::EnterRoom(Player& aPlayer, std::vector<Room>& someRooms)
             }
             if (aPlayer.myBoons[i].GetDuration() <= 0)
             {
-                aPlayer.myBoons[i].RemoveBoon(&aPlayer, i);
+                aPlayer.myBoons[i].RemoveBoon(&aPlayer);
                 aPlayer.myBoons.erase(aPlayer.myBoons.begin() + i);
+            }
+            else
+            {
+                i++;
             }
         }
         PostBattle(aPlayer);

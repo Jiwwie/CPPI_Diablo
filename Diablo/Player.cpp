@@ -53,7 +53,7 @@ void Player::AddItem(int anIndex, Item& anItem, std::vector<Item>& someItems)
 void Player::AddBoon(int anIndex, Boon& aBoon, std::vector<Boon>& someBoons)
 {
 	std::cout << "You ate " << aBoon.GetName() << "\n";
-	aBoon.ApplyBoon(this, anIndex);
+	aBoon.ApplyBoon(this);
 	myBoons.push_back(aBoon);
 	someBoons.erase(someBoons.begin() + anIndex);
 }

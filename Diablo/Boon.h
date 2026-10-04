@@ -12,8 +12,8 @@ public:
 	{
 	};
 
-	void ApplyBoon(Player* aPlayer, int boonIndex) const;
-	void RemoveBoon(Player* aPlayer, int boonIndex) const;
+	void ApplyBoon(Player* aPlayer) const;
+	void RemoveBoon(Player* aPlayer) const;
 	void ShowEffect();
 
 	std::string GetName() const { return myBoonName; };

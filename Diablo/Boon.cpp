@@ -1,9 +1,9 @@
 #include "Boon.h"
 #include "Enum.h"
 
-void Boon::ApplyBoon(Player* aPlayer, int boonIndex) const
+void Boon::ApplyBoon(Player* aPlayer) const
 {
-	Enum::Boon boon = static_cast<Enum::Boon>(boonIndex);
+	Enum::Boon boon = static_cast<Enum::Boon>(myEffect);
 	switch (boon)
 	{
 		case Enum::Boon::Apple:
@@ -39,9 +39,9 @@ void Boon::ApplyBoon(Player* aPlayer, int boonIndex) const
 	}
 }
 
-void Boon::RemoveBoon(Player* aPlayer, int boonIndex) const
+void Boon::RemoveBoon(Player* aPlayer) const
 {
-	Enum::Boon boon = static_cast<Enum::Boon>(boonIndex);
+	Enum::Boon boon = static_cast<Enum::Boon>(myEffect);
 	switch (boon)
 	{
 	case Enum::Boon::Apple:
