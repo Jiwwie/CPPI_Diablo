@@ -32,7 +32,7 @@ void Room::SpawnChests(int anAmount)
 	for (int i = 0; i < anAmount; i++)
 	{
         Random rnd;
-		Chest chest(rnd.GetRandomInt(1, 3), 0);
+		Chest chest(rnd.GetRandomInt(0, 2), 0);
 		myChests.push_back(chest);
 	}
 }
@@ -117,7 +117,7 @@ void Room::SpawnEnemyDrop(int anItemIndex)
             }
             default:
                 break;
-    }
+        }
 }
 
 int Room::GetTarget(int aChoice) const

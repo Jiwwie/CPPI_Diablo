@@ -1,5 +1,6 @@
 #pragma once
-
+#include "Item.h"
+#include "Random.h"
 
 class Chest
 {
@@ -10,7 +11,13 @@ public:
 	{
 	};
 
+	std::vector<Item> myItems;
+
+	void RandomizeChestItems();
+	void SpawnChestItems(int anItemIndex);
+
 private:
+	Random myRnd;
 	int myItemAmount;
 	int mySpellAmount;
 

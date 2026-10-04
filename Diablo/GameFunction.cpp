@@ -37,6 +37,7 @@ void GameFunction::CreateRooms(std::vector<Room>& someRooms)
 
     //Parlor
     someRooms[2].SpawnEnemies(2);
+    someRooms[2].SpawnChests(3);
     someRooms[2].SetDoors(&door2);
     someRooms[2].SetDoors(&door3);
 
