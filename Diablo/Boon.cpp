@@ -18,26 +18,59 @@ void Boon::ApplyBoon(Player* aPlayer, int boonIndex) const
 		}
 		case Enum::Boon::ClubSandwich:
 		{
-			aPlayer->HealPlayer(12);
+			aPlayer->HealPlayer(20);
+			aPlayer->ModifyStrength(2);
 			break;
 		}
 		case Enum::Boon::WoodFriedPizza:
 		{
-			aPlayer->HealPlayer(12);
+			aPlayer->HealPlayer(30);
+			aPlayer->ModifyStrength(5);
 			break;
 		}
 		case Enum::Boon::LunchBox:
 		{
-			aPlayer->HealPlayer(12);
+			aPlayer->HealPlayer(10);
+			aPlayer->ModifyStrength(2);
 			break;
 		}
-
 		default:
 			break;
 	}
 }
 
-//void Boon::RemoveBoon(Player* aPlayer) const
+void Boon::RemoveBoon(Player* aPlayer, int boonIndex) const
+{
+	Enum::Boon boon = static_cast<Enum::Boon>(boonIndex);
+	switch (boon)
+	{
+	case Enum::Boon::Apple:
+	{	
+		break;
+	}
+	case Enum::Boon::Banana:
+	{
+		break;
+	}
+	case Enum::Boon::ClubSandwich:
+	{
+		aPlayer->ModifyStrength(-2);
+		break;
+	}
+	case Enum::Boon::WoodFriedPizza:
+	{
+		aPlayer->ModifyStrength(-5);
+		break;
+	}
+	case Enum::Boon::LunchBox:
+	{
+		aPlayer->ModifyStrength(-2);
+		break;
+	}
+	default:
+		break;
+	}
+}
 
 void Boon::ShowEffect()
 {

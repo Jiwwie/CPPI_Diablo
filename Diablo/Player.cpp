@@ -136,7 +136,6 @@ void Player::UpdateStats(int aStat, int aStatBonus)
 	}
 }
 
-
 int Player::GetItemWeight() const
 {
 	int weight = 0;
@@ -181,7 +180,7 @@ void Player::ShowInventory(std::vector<Item>& someItems)
 		{
 			std::cout << "INVENTORY: ";
 
-			if (myItems.size() <= 0)
+			if (myItems.size() <= 0 && myBoons.size() <= 0)
 			{
 				std::cout << "\nEmpty.\n";
 			}
@@ -192,6 +191,12 @@ void Player::ShowInventory(std::vector<Item>& someItems)
 				{
 					std::cout << "* ";
 					myItems[i].ShowStats();
+					std::cout << '\n';
+				}
+				for (int i = 0; i < myBoons.size(); i++)
+				{
+					std::cout << "* ";
+					myBoons[i].ShowEffect();
 					std::cout << '\n';
 				}
 				while (input != 2)
@@ -236,5 +241,4 @@ void Player::ShowInventory(std::vector<Item>& someItems)
 			break;
 	}
 	
-
 }
