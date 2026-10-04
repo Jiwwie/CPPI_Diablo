@@ -140,6 +140,7 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Boon.cpp" />
     <ClCompile Include="Chest.cpp" />
     <ClCompile Include="Diablo.cpp" />
     <ClCompile Include="Door.cpp" />
@@ -151,6 +152,7 @@
     <ClCompile Include="Room.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Boon.h" />
     <ClInclude Include="Chest.h" />
     <ClInclude Include="Consts.h" />
     <ClInclude Include="Door.h" />

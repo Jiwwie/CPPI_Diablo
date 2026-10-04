@@ -1,27 +1,30 @@
 #pragma once
 #include "Item.h"
+#include "Boon.h"
 #include "Random.h"
 
 class Chest
 {
 public:
-	Chest(int anItemAmount, int aSpellAmount) :
+	Chest(int anItemAmount, int aBoonAmount) :
 		myItemAmount(anItemAmount),
-		mySpellAmount(aSpellAmount)
+		myBoonAmount(aBoonAmount)
 	{
-		RandomizeChestItems();
+		RandomizeChestContent();
 	};
 
 	std::vector<Item> myItems;
+	std::vector<Boon> myBoons;
 
-	void OpenChest(std::vector<Item>& someItems);
-	void RandomizeChestItems();
+	void OpenChest(std::vector<Item>& someItems, std::vector<Boon>& someBoons);
+	void RandomizeChestContent();
 	void SpawnChestItems(int anItemIndex);
+	void SpawnChestBoons(int aBoonIndex);
 
 private:
 	Random myRnd;
 	int myItemAmount;
-	int mySpellAmount;
+	int myBoonAmount;
 
 };
 

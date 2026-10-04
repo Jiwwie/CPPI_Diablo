@@ -31,4 +31,13 @@ namespace Enum
         CrownOfTheBlueprints,
         KnightsShield
     };
+
+    enum class Boon
+    {
+        Apple,
+        Banana,
+        ClubSandwich,
+        WoodFriedPizza,
+        LunchBox
+    };
 }

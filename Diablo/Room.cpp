@@ -32,7 +32,7 @@ void Room::SpawnChests(int anAmount)
 	for (int i = 0; i < anAmount; i++)
 	{
         Random rnd;
-		Chest chest(rnd.GetRandomInt(1, 2), 0);
+		Chest chest(rnd.GetRandomInt(1, 2), rnd.GetRandomInt(0, 3));
 		myChests.push_back(chest);
 	}
 }
@@ -239,7 +239,7 @@ void Room::PostBattle(Player& aPlayer)
             case 2:
             {
                 choice = 0;
-                while (choice != 3)
+                while (choice != 4)
                 {
                     system("cls");
                     std::cout << "Items on floor:\n\n";
@@ -248,12 +248,18 @@ void Room::PostBattle(Player& aPlayer)
                         std::cout << "* ";
                         myItems[i].ShowStats();
                     }
+                    for (int i = 0; i < myBoons.size(); i++)
+                    {
+                        std::cout << "* ";
+                        myBoons[i].ShowEffect();
+                    }
                     std::cout << "\n\nWhat do you want to do?\n";
-                    std::cout << "[1] Pick something up\n";
-                    std::cout << "[2] Open chests: currently [" << myChests.size() << "] chests in room.\n";
-                    std::cout << "[3] Continue\n";
+                    std::cout << "[1] Pick up item\n";
+                    std::cout << "[2] Pick up boon\n";
+                    std::cout << "[3] Open chests: currently [" << myChests.size() << "] chests in room.\n";
+                    std::cout << "[4] Continue\n";
                     std::cin >> choice;
-                    while (choice <= 0 || choice > 3 || std::cin.fail())
+                    while (choice <= 0 || choice > 4 || std::cin.fail())
                     {
                         GameFunction::ClearInputBuffer();
                         std::cout << "Invalid input: ";
@@ -288,12 +294,39 @@ void Room::PostBattle(Player& aPlayer)
                         std::cout << "There's nothing to pick up.\n";
                     }
 
-                    if (choice == 2 && myChests.size() > 0)
+                    if (choice == 2 && myBoons.size() > 0)
                     {
-                        myChests[0].OpenChest(myItems);
+                        system("cls");
+                        std::cout << "Boons on floor:\n\n";
+                        for (int i = 0; i < myBoons.size(); i++)
+                        {
+                            std::cout << "[" << i + 1 << "] ";
+                            myBoons[i].ShowEffect();
+                        }
+                        std::cout << "\nWhat will you pick up?\n";
+                        std::cin >> choice;
+                        while (choice <= 0 || choice > myBoons.size() || std::cin.fail())
+                        {
+                            GameFunction::ClearInputBuffer();
+                            std::cout << "Invalid input: ";
+                            std::cin >> choice;
+                        }
+                        GameFunction::ClearInputBuffer();
+                        choice = choice - 1;
+                        aPlayer.AddBoon(choice, myBoons[choice], myBoons);
+                        choice = 0;
+                    }
+                    else if (choice == 2 && myBoons.size() <= 0)
+                    {
+                        std::cout << "There's nothing to pick up.\n";
+                    }
+
+                    if (choice == 3 && myChests.size() > 0)
+                    {
+                        myChests[0].OpenChest(myItems, myBoons);
                         myChests.erase(myChests.begin());
                     }
-                    else if (choice == 2 && myChests.size() <= 0)
+                    else if (choice == 3 && myChests.size() <= 0)
                     {
                         std::cout << "There are no chests to open.\n";
                     }

@@ -4,6 +4,7 @@
 #include "Enemy.h"
 #include "Door.h"
 #include "Item.h"
+#include "Boon.h"
 #include "Chest.h"
 #include "Random.h"
 
@@ -19,6 +20,7 @@ class Room
 		std::vector<Enemy> myEnemies;
 		std::vector<Door*> myDoors;
 		std::vector<Item> myItems;
+		std::vector<Boon> myBoons;
 		std::vector<Chest> myChests;
 		
 		void DisplayEnemies() const;

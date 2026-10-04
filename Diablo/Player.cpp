@@ -4,6 +4,7 @@
 #include "Enum.h"
 #include "Player.h"
 #include "Item.h"
+#include "Boon.h"
 #include "GameFunction.h"
 
 void Player::TakeDamage(int someDamage)
@@ -47,6 +48,14 @@ void Player::AddItem(int anIndex, Item& anItem, std::vector<Item>& someItems)
 		anItem.ApplyStat(this);
 		someItems.erase(someItems.begin() + anIndex);
 	}
+}
+
+void Player::AddBoon(int anIndex, Boon& aBoon, std::vector<Boon>& someBoons)
+{
+	std::cout << "You ate " << aBoon.GetName() << "\n";
+	myBoons.push_back(aBoon);
+	//aBoon.ApplyStat(this);
+	someBoons.erase(someBoons.begin() + anIndex);
 }
 
 void Player::PromptDrop(std::vector<Item>& someItems)
