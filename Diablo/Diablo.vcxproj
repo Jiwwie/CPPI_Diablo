@@ -145,8 +145,12 @@
     <ClCompile Include="Diablo.cpp" />
     <ClCompile Include="Door.cpp" />
     <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="EnemyFactory.cpp" />
+    <ClCompile Include="EnemyType.cpp" />
     <ClCompile Include="GameFunction.cpp" />
     <ClCompile Include="Item.cpp" />
+    <ClCompile Include="ItemFactory.cpp" />
+    <ClCompile Include="ItemType.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="Room.cpp" />
@@ -157,9 +161,13 @@
     <ClInclude Include="Consts.h" />
     <ClInclude Include="Door.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="EnemyFactory.h" />
+    <ClInclude Include="EnemyType.h" />
     <ClInclude Include="Enum.h" />
     <ClInclude Include="GameFunction.h" />
     <ClInclude Include="Item.h" />
+    <ClInclude Include="ItemFactory.h" />
+    <ClInclude Include="ItemType.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Random.h" />
     <ClInclude Include="Room.h" />
