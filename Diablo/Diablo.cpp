@@ -7,14 +7,16 @@
 #include "Door.h"
 #include "Enum.h"
 #include "Random.h"
+#include "ItemFactory.h"
 #include "GameFunction.h"
 
 int main()
 {
     std::vector<Room> rooms;
-    GameFunction::CreateRooms(rooms);
+    ItemFactory itemFactory;
     Random random;
     Player player;
+    GameFunction::CreateRooms(rooms, itemFactory);
     
     int startGame = 0;
 
@@ -36,13 +38,13 @@ int main()
     {
         case 1:
         {
-            GameFunction::StartGame(player, rooms);
+            GameFunction::StartGame(player, rooms, itemFactory);
             break;
         }
         case 2:
         {
             GameFunction::PickCheats(player);
-            GameFunction::StartGame(player, rooms);
+            GameFunction::StartGame(player, rooms, itemFactory);
             break;
         }
         default:

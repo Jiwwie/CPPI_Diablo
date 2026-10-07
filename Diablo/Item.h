@@ -2,36 +2,33 @@
 #include <iostream>
 #include "Player.h"
 #include "Enum.h"
+#include "ItemType.h"
 
 class Player;
 
 class Item
 {
 public:
-	Item(std::string anItemName, int someWeight, int aStat, int aStatIncrease) :
-		myItemName(anItemName),
-		myWeight(someWeight),
-		myStat(aStat),
-		myStatBonus(aStatIncrease)
+	Item(const ItemType& anItemType) :
+		myItemType(&anItemType)
 	{
 	};
 
 	void ApplyStat(Player* aPlayer) const;
 	void RemoveStat(Player* aPlayer) const;
 
+	int GetStatBonus() const { return myItemType->GetStatBonus(); }
+	int GetStatIndex() const { return myItemType->GetStatIndex(); }
+	int GetWeight() const { return myItemType->GetWeight(); }
+	std::string GetStatStr() const { return myItemType->GetStatStr(); }
+	std::string GetName() const { return myItemType->GetName(); }
+
 	void ShowStats() const;
 
-	int GetWeight() const { return myWeight; }
-	int GetStatBonus() const { return myStatBonus; }
-	int GetStat() const { return myStat; }
-	std::string GetStatStr() const;
-	std::string GetName() const { return myItemName; }
+
 
 private:
-	std::string myItemName;
-	int myStat;
-	int myStatBonus;
-	int myWeight;
+	const ItemType* myItemType;
 
 };
 

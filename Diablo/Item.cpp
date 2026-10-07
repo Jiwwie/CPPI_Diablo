@@ -3,64 +3,15 @@
 
 void Item::ApplyStat(Player* aPlayer) const
 {
-	aPlayer->UpdateStats(myStat, myStatBonus);
+	aPlayer->UpdateStats(GetStatIndex(), GetStatBonus());
 }
 
 void Item::RemoveStat(Player* aPlayer) const
 {
-	aPlayer->UpdateStats(myStat, -myStatBonus);
-}
-
-std::string Item::GetStatStr() const
-{
-	Enum::Stat stat = static_cast<Enum::Stat>(myStat);
-	std::string statStr = "???";
-
-	switch (stat)
-	{
-		case Enum::Stat::Strength:
-		{
-			statStr = "Strength";
-			return statStr;
-			break;
-		}
-		case Enum::Stat::Agility:
-		{
-			statStr = "Agility";
-			return statStr;
-			break;
-		}
-		case Enum::Stat::Endurance:
-		{
-			statStr = "Endurance";
-			return statStr;
-			break;
-		}
-		case Enum::Stat::MaxHealth:
-		{
-			statStr = "Max Health";
-			return statStr;
-			break;
-		}
-		case Enum::Stat::Defense:
-		{
-			statStr = "Defense";
-			return statStr;
-			break;
-		}
-		case Enum::Stat::InventoryCap:
-		{
-			statStr = "Inventory Capacity";
-			return statStr;
-			break;
-		}
-		default:
-			return statStr;
-			break;
-	}
+	aPlayer->UpdateStats(GetStatIndex(), -GetStatBonus());
 }
 
 void Item::ShowStats() const
 {
-	std::cout << myItemName << " || Bonus: " << myStatBonus << " " << GetStatStr() << " || Weight: " << myWeight << '\n';
+	std::cout << GetName() << " || Bonus: " << GetStatBonus() << " " << GetStatStr() << " || Weight: " << GetWeight() << '\n';
 }

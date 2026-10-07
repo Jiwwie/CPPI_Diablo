@@ -3,8 +3,9 @@
 #include "Chest.h"
 #include "Enum.h"
 #include "Player.h"
+class ItemFactory;
 
-void GameFunction::CreateRooms(std::vector<Room>& someRooms)
+void GameFunction::CreateRooms(std::vector<Room>& someRooms, ItemFactory& anItemFactory)
 {
     int EntranceHall = static_cast<int>(Enum::RoomName::EntranceHall);
     int Courtyard = static_cast<int>(Enum::RoomName::Courtyard);
@@ -27,7 +28,7 @@ void GameFunction::CreateRooms(std::vector<Room>& someRooms)
 
     //Entrance hall
     someRooms[0].SpawnEnemies(1);
-    someRooms[0].SpawnChests(1);
+    someRooms[0].SpawnChests(1, anItemFactory);
     someRooms[0].SetDoors(&door1);
 
     //Courtyard
@@ -37,7 +38,7 @@ void GameFunction::CreateRooms(std::vector<Room>& someRooms)
 
     //Parlor
     someRooms[2].SpawnEnemies(2);
-    someRooms[2].SpawnChests(3);
+    someRooms[2].SpawnChests(3, anItemFactory);
     someRooms[2].SetDoors(&door2);
     someRooms[2].SetDoors(&door3);
 
@@ -85,11 +86,11 @@ void GameFunction::PickCheats(Player& aPlayer)
     }
 }
 
-void GameFunction::StartGame(Player& aPlayer, std::vector<Room>& someRooms)
+void GameFunction::StartGame(Player& aPlayer, std::vector<Room>& someRooms, ItemFactory& anItemFactory)
 {
     while (aPlayer.isAlive() && aPlayer.GetCurrentRoom() < someRooms.size())
     {
-        someRooms[aPlayer.GetCurrentRoom()].EnterRoom(aPlayer, someRooms);
+        someRooms[aPlayer.GetCurrentRoom()].EnterRoom(aPlayer, someRooms, anItemFactory);
         
         if (aPlayer.GetCurrentRoom() == static_cast<int>(Enum::RoomName::Room46))
         {

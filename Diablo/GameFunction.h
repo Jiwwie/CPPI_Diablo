@@ -4,6 +4,8 @@
 #include "Room.h"
 #include "Player.h"
 
+class ItemFactory;
+
 namespace GameFunction
 {      
     inline void ClearInputBuffer()
@@ -12,10 +14,10 @@ namespace GameFunction
         std::cin.ignore(10000, '\n');
     }
     
-    void CreateRooms(std::vector<Room>& someRooms);
+    void CreateRooms(std::vector<Room>& someRooms, ItemFactory& anItemFactory);
 
     void PickCheats(Player& aPlayer);
 
-    void StartGame(Player& aPlayer, std::vector<Room>& someRooms);
+    void StartGame(Player& aPlayer, std::vector<Room>& someRooms, ItemFactory& anItemFactory);
 
 }

@@ -6,6 +6,7 @@
 #include "Random.h"
 #include "Consts.h"
 #include "GameFunction.h"
+#include "ItemFactory.h"
 
 void Room::DisplayEnemies() const
 {
@@ -27,12 +28,12 @@ void Room::SpawnEnemies(int anAmount)
 	}
 }
 
-void Room::SpawnChests(int anAmount)
+void Room::SpawnChests(int anAmount, ItemFactory& anItemFactory)
 {
 	for (int i = 0; i < anAmount; i++)
 	{
         Random rnd;
-		Chest chest(rnd.GetRandomInt(1, 2), rnd.GetRandomInt(0, 3));
+		Chest chest(rnd.GetRandomInt(1, 2), rnd.GetRandomInt(0, 3), anItemFactory);
 		myChests.push_back(chest);
 	}
 }
@@ -42,7 +43,7 @@ void Room::SetDoors(Door* aDoor)
     myDoors.push_back(aDoor);
 }
 
-void Room::KillEnemy(int anEnemy)
+void Room::KillEnemy(int anEnemy, ItemFactory& anItemFactory)
 {
 	if (!myEnemies[anEnemy].isAlive())
 	{
@@ -51,72 +52,16 @@ void Room::KillEnemy(int anEnemy)
         int enemyDrop = myRnd.GetRandomInt(0, 1);
         if (enemyDrop == 1)
         {
-            int rndItem = (myRnd.GetRandomInt(0, 7));
+            int rndItem = (myRnd.GetRandomInt(0, static_cast<int>(ItemId::Count)-1));
             std::cout << "Enemy dropped an item\n";
-            SpawnEnemyDrop(rndItem);
+            SpawnEnemyDrop(rndItem, anItemFactory);
         }
 	}
-
-
 }
 
-void Room::SpawnEnemyDrop(int anItemIndex)
+void Room::SpawnEnemyDrop(int anItemIndex, ItemFactory& anItemFactory)
 {
-    Enum::Item item = static_cast<Enum::Item>(anItemIndex);
-
-        switch (item)
-        {
-            case Enum::Item::MoonPendant:
-            {
-                Item pendant("Moon Pendant", Const::WEIGHT_MEDIUM, static_cast<int>(Enum::Stat::MaxHealth), 25);
-                myItems.push_back(pendant);
-                break;
-            }
-            case Enum::Item::RunningShoes:
-            {
-                Item shoes("Running Shoes", Const::WEIGHT_MEDIUM, static_cast<int>(Enum::Stat::Agility), 2);
-                myItems.push_back(shoes);
-                break;
-            }
-            case Enum::Item::SleepingMask:
-            {
-                Item mask("Sleeping Mask", Const::WEIGHT_LIGHT, static_cast<int>(Enum::Stat::Defense), 10);
-                myItems.push_back(mask);
-                break;
-            }
-            case Enum::Item::BrokenLever:
-            {
-                Item lever("Broken Lever", Const::WEIGHT_HEAVY, static_cast<int>(Enum::Stat::Strength), 3);
-                myItems.push_back(lever);
-                break;
-            }
-            case Enum::Item::MagnifyingGlass:
-            {
-                Item glass("Magnifying Glass", Const::WEIGHT_MEDIUM, static_cast<int>(Enum::Stat::Endurance), 1);
-                myItems.push_back(glass);
-                break;
-            }
-            case Enum::Item::LuckyRabbitsFoot:
-            {
-                Item foot("Lucky Rabbit's Foot", Const::WEIGHT_LIGHT, static_cast<int>(Enum::Stat::Strength), 1);
-                myItems.push_back(foot);
-                break;
-            }
-            case Enum::Item::CrownOfTheBlueprints:
-            {
-                Item crown("Crown of the Blueprints", Const::WEIGHT_VERY_HEAVY, static_cast<int>(Enum::Stat::Strength), 5);
-                myItems.push_back(crown);
-                break;
-            }
-            case Enum::Item::KnightsShield:
-            {
-                Item shield("Knight's Shield", Const::WEIGHT_VERY_HEAVY, static_cast<int>(Enum::Stat::Endurance), 5);
-                myItems.push_back(shield);
-                break;
-            }
-            default:
-                break;
-        }
+	anItemFactory.Create(static_cast<ItemId>(anItemIndex));
 }
 
 int Room::GetTarget(int aChoice) const
@@ -172,7 +117,7 @@ void Room::RoomIntro(Player& aPlayer)
     system("pause");
 }
 
-void Room::Battle(Player& aPlayer)
+void Room::Battle(Player& aPlayer, ItemFactory& anItemFactory)
 {
     while (myEnemies.size() > 0 && aPlayer.isAlive())
     {
@@ -189,7 +134,7 @@ void Room::Battle(Player& aPlayer)
         chosenEnemy = GetTarget(chosenEnemy);
         chosenEnemy -= 1;
         aPlayer.DoDamage(myEnemies[chosenEnemy]);
-        KillEnemy(chosenEnemy);
+        KillEnemy(chosenEnemy, anItemFactory);
         for (int enemies = 0; enemies < myEnemies.size(); enemies++)
         {
             myEnemies[enemies].DoDamage(aPlayer);
@@ -382,10 +327,10 @@ void Room::SelectDoor(Player& aPlayer, std::vector<Room>& someRooms)
 
 }
 
-void Room::EnterRoom(Player& aPlayer, std::vector<Room>& someRooms)
+void Room::EnterRoom(Player& aPlayer, std::vector<Room>& someRooms, ItemFactory& anItemFactory)
 {
     RoomIntro(aPlayer);
-    Battle(aPlayer);
+    Battle(aPlayer, anItemFactory);
     if (aPlayer.isAlive())
     {
         for (int i = 0; i < aPlayer.myBoons.size();)

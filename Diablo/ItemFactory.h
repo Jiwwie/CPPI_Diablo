@@ -1,5 +1,6 @@
 #pragma once
-#include "Item.h"
+#include <array>
+#include "ItemType.h"
 
 enum class ItemId
 {
@@ -10,7 +11,9 @@ enum class ItemId
     MagnifyingGlass,
     LuckyRabbitsFoot,
     CrownOfTheBlueprints,
-    KnightsShield
+    KnightsShield,
+
+	Count
 };
 
 class ItemFactory
@@ -18,8 +21,9 @@ class ItemFactory
 public:
 
 	Item Create(ItemId anId);
+    void Init();
 
 private:
-
+    std::array<ItemType, static_cast<int>(ItemId::Count)> myItemTypes;
 };
 
