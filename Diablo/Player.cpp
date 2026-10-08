@@ -58,6 +58,26 @@ void Player::AddBoon(int anIndex, Boon& aBoon, std::vector<Boon>& someBoons)
 	someBoons.erase(someBoons.begin() + anIndex);
 }
 
+void Player::UpdateBoon()
+{
+	for (int i = 0; i < myBoons.size();)
+	{
+		if (myBoons[i].GetDuration() > 0)
+		{
+			myBoons[i].DecreaseDuration();
+		}
+		if (myBoons[i].GetDuration() <= 0)
+		{
+			myBoons[i].RemoveBoon(this);
+			myBoons.erase(myBoons.begin() + i);
+		}
+		else
+		{
+			i++;
+		}
+	}
+}
+
 void Player::PromptDrop(std::vector<Item>& someItems)
 {
 	int itemIndex;

@@ -335,22 +335,7 @@ void Room::EnterRoom(Player& aPlayer, std::vector<Room>& someRooms, ItemFactory&
     Battle(aPlayer, anItemFactory);
     if (aPlayer.isAlive())
     {
-        for (int i = 0; i < aPlayer.myBoons.size();)
-        {
-            if (aPlayer.myBoons[i].GetDuration() > 0)
-            {
-                aPlayer.myBoons[i].DecreaseDuration();
-            }
-            if (aPlayer.myBoons[i].GetDuration() <= 0)
-            {
-                aPlayer.myBoons[i].RemoveBoon(&aPlayer);
-                aPlayer.myBoons.erase(aPlayer.myBoons.begin() + i);
-            }
-            else
-            {
-                i++;
-            }
-        }
+		aPlayer.UpdateBoon();
         PostBattle(aPlayer);
         SelectDoor(aPlayer, someRooms);
     }

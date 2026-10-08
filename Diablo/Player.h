@@ -7,13 +7,13 @@ class Enemy;
 class Player
 {
 public:
-	std::vector<Boon> myBoons;
 
 	void TakeDamage(int someDamage);
 	void DoDamage(Enemy& anEnemy) const;
 
 	void AddItem(int anIndex, Item& anItem, std::vector<Item>& someItems);
 	void AddBoon(int anIndex, Boon& anItem, std::vector<Boon>& someBoons);
+	void UpdateBoon();
 	void PromptDrop(std::vector<Item>& someItems);
 	void DropItem(int anItemIndex, std::vector<Item>& someItems);
 	void UpdateStats(int aStat, int aStatBonus);
@@ -68,4 +68,5 @@ private:
 	bool myGiantsStrength = false;
 
 	std::vector<Item> myItems;
+	std::vector<Boon> myBoons;
 };
