@@ -14,7 +14,7 @@ namespace GameFunction
         std::cin.ignore(10000, '\n');
     }
     
-    void CreateRooms(std::vector<Room>& someRooms, ItemFactory& anItemFactory);
+    void CreateRooms(std::vector<Room>& someRooms, ItemFactory& anItemFactory, EnemyFactory& anEnemyFactory);
 
     void PickCheats(Player& aPlayer);
 

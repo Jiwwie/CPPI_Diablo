@@ -4,8 +4,9 @@
 #include "Enum.h"
 #include "Player.h"
 class ItemFactory;
+class EnemyFactory;
 
-void GameFunction::CreateRooms(std::vector<Room>& someRooms, ItemFactory& anItemFactory)
+void GameFunction::CreateRooms(std::vector<Room>& someRooms, ItemFactory& anItemFactory, EnemyFactory& anEnemyFactory)
 {
     int EntranceHall = static_cast<int>(Enum::RoomName::EntranceHall);
     int Courtyard = static_cast<int>(Enum::RoomName::Courtyard);
@@ -27,17 +28,17 @@ void GameFunction::CreateRooms(std::vector<Room>& someRooms, ItemFactory& anItem
     static Door door3(Parlor, Room46, true);
 
     //Entrance hall
-    someRooms[0].SpawnEnemies(1);
+    someRooms[0].SpawnEnemies(1, anEnemyFactory);
     someRooms[0].SpawnChests(1, anItemFactory);
     someRooms[0].SetDoors(&door1);
 
     //Courtyard
-    someRooms[1].SpawnEnemies(3);
+    someRooms[1].SpawnEnemies(3, anEnemyFactory);
     someRooms[1].SetDoors(&door1);
     someRooms[1].SetDoors(&door2);
 
     //Parlor
-    someRooms[2].SpawnEnemies(2);
+    someRooms[2].SpawnEnemies(2, anEnemyFactory);
     someRooms[2].SpawnChests(3, anItemFactory);
     someRooms[2].SetDoors(&door2);
     someRooms[2].SetDoors(&door3);

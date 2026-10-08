@@ -6,20 +6,20 @@
 
 void Enemy::TakeDamage(int someDamage)
 {
-    myHealth -= someDamage;
+    myCurrentHealth -= someDamage;
 }
 
 void Enemy::DoDamage(Player& aPlayer) const
 {
-    aPlayer.TakeDamage(myDamage);
+    aPlayer.TakeDamage(GetDamage());
 }
 
 void Enemy::ShowStats() const
 {
 	std::cout << "Enemy: ";
 	std::cout << "HP: ";
-	std::cout << myHealth;
+	std::cout << myCurrentHealth;
 	std::cout << " | ATK: ";
-	std::cout << myDamage;
+	std::cout << GetDamage();
 	std::cout << "\n";
 }

@@ -8,6 +8,7 @@
 #include "Enum.h"
 #include "Random.h"
 #include "ItemFactory.h"
+#include "EnemyFactory.h"
 #include "GameFunction.h"
 
 int main()
@@ -15,9 +16,11 @@ int main()
     std::vector<Room> rooms;
     ItemFactory itemFactory;
     itemFactory.Init();
+    EnemyFactory enemyFactory;
+    enemyFactory.Init();
     Random random;
     Player player;
-    GameFunction::CreateRooms(rooms, itemFactory);
+    GameFunction::CreateRooms(rooms, itemFactory, enemyFactory);
     
     int startGame = 0;
 

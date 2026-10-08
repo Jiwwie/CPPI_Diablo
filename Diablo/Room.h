@@ -8,6 +8,7 @@
 #include "Chest.h"
 #include "Random.h"
 class ItemFactory;
+class EnemyFactory;
 
 class Room
 {
@@ -25,7 +26,7 @@ class Room
 		std::vector<Chest> myChests;
 		
 		void DisplayEnemies() const;
-		void SpawnEnemies(int anAmount);
+		void SpawnEnemies(int anAmount, EnemyFactory& anEnemyFactory);
 		void SpawnChests(int anAmount, ItemFactory& anItemFactory);
 		void SetDoors(Door* aDoor);
 		

@@ -20,18 +20,6 @@ namespace Enum
         InventoryCap
     };
 
-    enum class Item
-    {
-        MoonPendant,
-        RunningShoes,
-        SleepingMask,
-        BrokenLever,
-        MagnifyingGlass,
-        LuckyRabbitsFoot,
-        CrownOfTheBlueprints,
-        KnightsShield
-    };
-
     enum class Boon
     {
         Apple,

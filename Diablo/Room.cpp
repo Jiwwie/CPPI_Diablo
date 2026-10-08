@@ -7,6 +7,7 @@
 #include "Consts.h"
 #include "GameFunction.h"
 #include "ItemFactory.h"
+#include "EnemyFactory.h"
 
 void Room::DisplayEnemies() const
 {
@@ -18,12 +19,12 @@ void Room::DisplayEnemies() const
 	}
 }
 
-void Room::SpawnEnemies(int anAmount)
+void Room::SpawnEnemies(int anAmount, EnemyFactory& anEnemyFactory)
 {
 	for (int enemyCount = 0; enemyCount < anAmount; enemyCount++)
 	{
         Random rnd;
-		Enemy enemy(rnd.GetRandomInt(Const::MIN_ENEMY_HP, Const::MAX_ENEMY_HP), rnd.GetRandomInt(Const::MIN_ENEMY_DMG, Const::MAX_ENEMY_DMG));
+        Enemy enemy = anEnemyFactory.Create(static_cast<EnemyId>(rnd.GetRandomInt(0, static_cast<int>(EnemyId::Count) - 1)));
 		myEnemies.push_back(enemy);
 	}
 }
@@ -61,7 +62,8 @@ void Room::KillEnemy(int anEnemy, ItemFactory& anItemFactory)
 
 void Room::SpawnEnemyDrop(int anItemIndex, ItemFactory& anItemFactory)
 {
-	anItemFactory.Create(static_cast<ItemId>(anItemIndex));
+	Item item = anItemFactory.Create(static_cast<ItemId>(anItemIndex));
+    myItems.push_back(item);
 }
 
 int Room::GetTarget(int aChoice) const

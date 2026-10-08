@@ -1,24 +1,28 @@
 #pragma once
+#include "EnemyType.h"
 class Player;
+class EnemyType;
 
 class Enemy
 {
 public:
-	Enemy(int someHealth, int someDamage)
+	Enemy(const EnemyType& anEnemyType) :
+		myEnemyType(&anEnemyType)
 	{
-		myHealth = someHealth;
-		myDamage = someDamage;
-	}
+	};
 
-	bool isAlive() const { return myHealth > 0; }
+	bool isAlive() const { return myCurrentHealth > 0; }
 
 	void TakeDamage(int someDamage);
 	void DoDamage(Player& aPlayer) const;
 
 	void ShowStats() const;
 
+	int GetHealth() const { return myCurrentHealth; }
+	int GetDamage() const { return myEnemyType->GetDamage(); }
+
 private:
-	int myHealth;
-	int myDamage;
+	const EnemyType* myEnemyType;
+	int myCurrentHealth = myEnemyType->GetHealth();
 
 };
