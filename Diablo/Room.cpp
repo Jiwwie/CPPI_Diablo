@@ -46,7 +46,7 @@ void Room::SetDoors(Door* aDoor)
 
 void Room::KillEnemy(int anEnemy, ItemFactory& anItemFactory)
 {
-	if (!myEnemies[anEnemy].isAlive())
+	if (!myEnemies[anEnemy].IsAlive())
 	{
 		myEnemies.erase(myEnemies.begin() + anEnemy);
 

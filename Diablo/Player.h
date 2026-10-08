@@ -7,7 +7,6 @@ class Enemy;
 class Player
 {
 public:
-	std::vector<Item> myItems;
 	std::vector<Boon> myBoons;
 
 	void TakeDamage(int someDamage);
@@ -68,4 +67,5 @@ private:
 	bool myUndead = false;
 	bool myGiantsStrength = false;
 
+	std::vector<Item> myItems;
 };

@@ -56,7 +56,7 @@ int main()
     }
 
     
-    if (rooms[player.GetCurrentRoom()].myEnemies.size() <= 0 && player.isAlive())
+    if (rooms[player.GetCurrentRoom()].GetRoomSize() <= 0 && player.isAlive())
     {
         system("cls");
         std::cout << "You reached Room 46!\n";

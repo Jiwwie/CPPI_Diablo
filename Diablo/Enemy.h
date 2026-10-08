@@ -11,7 +11,7 @@ public:
 	{
 	};
 
-	bool isAlive() const { return myCurrentHealth > 0; }
+	bool IsAlive() const { return myCurrentHealth > 0; }
 
 	void TakeDamage(int someDamage);
 	void DoDamage(Player& aPlayer) const;

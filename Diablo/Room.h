@@ -18,12 +18,6 @@ class Room
 		{
 		};
 
-		Random myRnd;
-		std::vector<Enemy> myEnemies;
-		std::vector<Door*> myDoors;
-		std::vector<Item> myItems;
-		std::vector<Boon> myBoons;
-		std::vector<Chest> myChests;
 		
 		void DisplayEnemies() const;
 		void SpawnEnemies(int anAmount, EnemyFactory& anEnemyFactory);
@@ -42,8 +36,16 @@ class Room
 		void EnterRoom(Player& aPlayer, std::vector<Room>& someRooms, ItemFactory& anItemFactory);
 
 		std::string GetRoomName() const { return myRoomName; };
+		size_t GetRoomSize() const { return myEnemies.size(); };
 
 	private:
 		std::string myRoomName;
+		Random myRnd;
+
+		std::vector<Chest> myChests;
+		std::vector<Enemy> myEnemies;
+		std::vector<Boon> myBoons;
+		std::vector<Item> myItems;
+		std::vector<Door*> myDoors;
 };
 

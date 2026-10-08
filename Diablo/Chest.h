@@ -9,9 +9,6 @@ class Chest
 public:
 	Chest(int anItemAmount, int aBoonAmount, ItemFactory& anItemFactory);
 
-	std::vector<Item> myItems;
-	std::vector<Boon> myBoons;
-
 	void OpenChest(std::vector<Item>& someItems, std::vector<Boon>& someBoons);
 	void RandomizeChestContent(ItemFactory& anItemFactory);
 	void SpawnChestItems(int anItemIndex, ItemFactory& anItemFactory);
@@ -22,5 +19,7 @@ private:
 	int myItemAmount;
 	int myBoonAmount;
 
+	std::vector<Item> myItems;
+	std::vector<Boon> myBoons;
 };
 

@@ -4,8 +4,6 @@
 #include "Enum.h"
 #include "ItemType.h"
 
-class Player;
-
 class Item
 {
 public:
