@@ -20,8 +20,8 @@ class ItemFactory
 {
 public:
 
-	Item Create(ItemId anId);
     void Init();
+	Item Create(const ItemId anId) const;
 
 private:
     std::array<ItemType, static_cast<int>(ItemId::Count)> myItemTypes;

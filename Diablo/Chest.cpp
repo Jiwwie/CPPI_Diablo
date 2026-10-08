@@ -96,5 +96,6 @@ void Chest::SpawnChestBoons(int anItemIndex)
 
 void Chest::SpawnChestItems(int anItemIndex, ItemFactory& anItemFactory)
 {
-    anItemFactory.Create(static_cast<ItemId>(anItemIndex));
+    Item item = anItemFactory.Create(static_cast<ItemId>(anItemIndex));
+    myItems.push_back(item);
 }

@@ -14,6 +14,7 @@ int main()
 {
     std::vector<Room> rooms;
     ItemFactory itemFactory;
+    itemFactory.Init();
     Random random;
     Player player;
     GameFunction::CreateRooms(rooms, itemFactory);

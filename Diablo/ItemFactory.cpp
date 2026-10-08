@@ -4,7 +4,7 @@
 #include "ItemType.h"
 #include "ItemFactory.h"
 
-Item ItemFactory::Create(ItemId anId)
+Item ItemFactory::Create(const ItemId anId) const
 { 
 	return Item(myItemTypes[static_cast<int>(anId)]);
 }
@@ -59,6 +59,5 @@ void ItemFactory::Init()
 	knightsShield.SetWeight(Const::WEIGHT_VERY_HEAVY);
 	knightsShield.SetStatIndex(static_cast<int>(Enum::Stat::Endurance));
 	knightsShield.SetStatBonus(5);
-
 
 }
